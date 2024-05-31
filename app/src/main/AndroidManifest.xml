@@ -13,6 +13,23 @@
         android:theme="@style/Theme.WasiatD"
         tools:targetApi="31">
         <activity
+            android:name=".utils.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".utils.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".utils.SplashScreenActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".dashboard.dashboardMainActivity.dashboardMainActivity"
             android:exported="false" />
         <activity
@@ -24,6 +41,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
