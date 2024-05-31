@@ -2,4 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="light_green">#f0ffed</color> <!-- Light Green -->
+    <color name="green_stroke">#308000</color> <!-- Dark Green for the stroke -->
+
 </resources>
