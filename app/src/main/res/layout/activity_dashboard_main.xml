@@ -17,9 +17,63 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_shape_toolbar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+            <!-- Left-aligned logo -->
+            <ImageView
+                android:id="@+id/dashboardLogo"
+                android:layout_width="120dp"
+                android:layout_height="60dp"
+                android:src="@drawable/Dashboard_Logo"
+                android:scaleType="fitStart"
+                android:padding="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="onItemClick" />
+
+            <!-- Spacer to push the next items to the right -->
+            <Space
+                android:layout_width="164dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <!-- Right-aligned logos -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- Second logo -->
+                <ImageView
+                    android:id="@+id/userLogo"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/userlogo"
+                    android:padding="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="onItemClick"
+                    android:layout_gravity="end" />
+
+                <!-- Third logo -->
+                <ImageView
+                    android:id="@+id/menuLogo"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/menuLogo"
+                    android:padding="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="onItemClick"
+                    android:layout_gravity="end" />
+
+            </LinearLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -44,7 +98,7 @@
                 <pl.droidsonroids.gif.GifImageView
                     android:id="@+id/gifImageView"
                     android:layout_width="match_parent"
-                    android:layout_height="180dp"
+                    android:layout_height="200dp"
                     android:background="#000"
                     android:scaleType="fitXY"
                     android:src="@drawable/register_gif" />
@@ -78,76 +132,78 @@
                     android:text="Hello User123, Welcome Back"
                     android:textColor="#FFFFFF"
                     android:textSize="24sp" />
+
+                <LinearLayout
+                    android:id="@+id/boxContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="160dp"
+                    android:background="@drawable/rounded_corner_dashboard"
+                    android:orientation="horizontal"
+                    android:padding="20dp">
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="150dp"
+                        android:layout_margin="20dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/green_box">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="10"
+                                android:textColor="@color/green_stroke"
+                                android:textSize="36sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Plants"
+                                android:textColor="@color/green_stroke"
+                                android:textSize="24sp" />
+                        </LinearLayout>
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="150dp"
+                        android:layout_margin="20dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/green_box">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="3"
+                                android:textColor="@color/green_stroke"
+                                android:textSize="36sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Tasks"
+                                android:textColor="@color/green_stroke"
+                                android:textSize="24sp" />
+                        </LinearLayout>
+                    </FrameLayout>
+                </LinearLayout>
             </FrameLayout>
 
             <!-- Foreground LinearLayout with rounded corners -->
-            <LinearLayout
-                android:id="@+id/boxContainer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/rounded_corner_dashboard"
-                android:orientation="horizontal"
-                android:padding="20dp">
 
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_height="150dp"
-                    android:layout_margin="20dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/green_box">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="10"
-                            android:textColor="@color/green_stroke"
-                            android:textSize="36sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Plants"
-                            android:textColor="@color/green_stroke"
-                            android:textSize="24sp" />
-                    </LinearLayout>
-                </FrameLayout>
-
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_height="150dp"
-                    android:layout_margin="20dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/green_box">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="3"
-                            android:textColor="@color/green_stroke"
-                            android:textSize="36sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Tasks"
-                            android:textColor="@color/green_stroke"
-                            android:textSize="24sp" />
-                    </LinearLayout>
-                </FrameLayout>
-            </LinearLayout>
 
             <!-- CardView containing the RecyclerView and TextView -->
             <androidx.cardview.widget.CardView
