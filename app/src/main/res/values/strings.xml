@@ -13,7 +13,14 @@
     <string name="signInTagline">Sign in to continue.</string>
     <string name="loginImageDescription">Background Login Image</string>
     <string name="forgotPassword">Forgot Password?</string>
+    <string name="passwordText">******</string>
+    <string name="passwordHint">Password</string>
+    <string name="emailHint">Email</string>
+    <string name="emailText">iniemail@gmail.com</string>
     <string name="signUp">Forgot Password?</string>
     <string name="createAccount">Don\'t have an account? Register</string>
+    <string name="createNewAccountLabel">Create new Account</string>
     <string name="signUpLabel">Sign Up</string>
+    <string name="nameHint">Name</string>
+    <string name="nameText">Afif Udin Pol Ganteng</string>
 </resources>

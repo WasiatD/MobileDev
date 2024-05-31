@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".utils.RegisterActivity">
 
-    <!-- Background Image -->
     <ImageView
         android:id="@+id/backgroundImage"
         android:layout_width="0dp"
@@ -26,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
         android:fontFamily="@font/poppins_bold"
-        android:text="Create new Account"
+        android:text="@string/createNewAccountLabel"
         android:textColor="@android:color/holo_green_dark"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -68,10 +67,11 @@
         android:layout_marginTop="4dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/edit_text_background"
-        android:hint="NAME"
+        android:hint="@string/nameHint"
+        android:autofillHints="name"
+        android:inputType="textPersonName"
         android:padding="12dp"
-        android:text="Tomato4Life"
-        android:textSize="16dp"
+        android:text="@string/nameText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -101,9 +101,11 @@
         android:layout_marginTop="4dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/edit_text_background"
-        android:hint="EMAIL"
+        android:hint="@string/emailHint"
+        android:inputType="textEmailAddress"
+        android:autofillHints="emailAddress"
         android:padding="12dp"
-        android:text="hello@potatoelover.com"
+        android:text="@string/emailText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -124,7 +126,6 @@
         app:layout_constraintTop_toBottomOf="@+id/emailField"
         app:layout_constraintVertical_bias="0.0" />
 
-    <!-- Password Field -->
     <EditText
         android:id="@+id/passwordField"
         android:layout_width="0dp"
@@ -133,16 +134,16 @@
         android:layout_marginTop="4dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/edit_text_background"
-        android:hint="Confirm Password"
+        android:autofillHints="password"
+        android:hint="@string/passwordHint"
         android:inputType="textPassword"
         android:padding="12dp"
-        android:text="******"
+        android:text="@string/passwordText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/labelPassword" />
 
-    <!-- Label for Confirm Password Field -->
     <TextView
         android:id="@+id/labelConfirmPassword"
         android:layout_width="wrap_content"
@@ -157,7 +158,6 @@
         app:layout_constraintTop_toBottomOf="@+id/passwordField"
         app:layout_constraintVertical_bias="0.0" />
 
-    <!-- Confirm Password Field -->
     <EditText
         android:id="@+id/confirmPasswordField"
         android:layout_width="0dp"
@@ -166,21 +166,21 @@
         android:layout_marginTop="4dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/edit_text_background"
-        android:hint="CONFIRM PASSWORD"
+        android:hint="@string/passwordHint"
+        android:autofillHints="password"
         android:inputType="textPassword"
         android:padding="12dp"
-        android:text="******"
+        android:text="@string/passwordText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/labelConfirmPassword" />
 
-    <!-- Sign Up Button -->
     <Button
         android:id="@+id/signUpButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Sign up"
+        android:text="@string/signUpLabel"
         android:backgroundTint="@color/sage_green"
         android:textColor="@android:color/white"
         android:padding="12dp"

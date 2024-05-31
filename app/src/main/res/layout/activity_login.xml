@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".utils.RegisterActivity">
 
-    <!-- Background Image -->
     <ImageView
         android:id="@+id/backgroundImage"
         android:layout_width="0dp"
@@ -50,23 +49,25 @@
         android:text="@string/emailLabel"
         android:textColor="@android:color/darker_gray"
         android:textSize="12sp"
-        app:layout_constraintBottom_toTopOf="@+id/nameField"
+        app:layout_constraintBottom_toTopOf="@+id/emailField"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/subtitleText"
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:id="@+id/nameField"
+        android:id="@+id/emailField"
+        android:inputType="textEmailAddress"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/edit_text_background"
-        android:hint="NAME"
+        android:hint="@string/emailHint"
         android:padding="12dp"
-        android:text="Tomato4Life"
-        android:textSize="16dp"
+        android:text="@string/emailText"
+        android:autofillHints="emailAddress"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -83,7 +84,7 @@
         android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/passwordField"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameField"
+        app:layout_constraintTop_toBottomOf="@+id/emailField"
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
@@ -94,10 +95,11 @@
         android:layout_marginTop="4dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/edit_text_background"
-        android:hint="Confirm Password"
+        android:hint="@string/passwordHint"
         android:inputType="textPassword"
         android:padding="12dp"
-        android:text="******"
+        android:text="@string/passwordText"
+        android:autofillHints="password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -132,6 +134,7 @@
     <TextView
         android:id="@+id/loginLink"
         android:clickable="true"
+        android:focusable="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -140,5 +143,4 @@
         app:layout_constraintStart_toStartOf="parent"
         android:textColor="@android:color/darker_gray"
         app:layout_constraintTop_toBottomOf="@id/loginText" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
