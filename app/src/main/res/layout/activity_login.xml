@@ -7,12 +7,12 @@
     android:layout_height="match_parent"
     tools:context=".utils.RegisterActivity">
 
-    <ImageView
+    <pl.droidsonroids.gif.GifImageView
         android:id="@+id/backgroundImage"
         android:layout_width="0dp"
         android:layout_height="250dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/gif_dashboard"
+        android:src="@drawable/login_gif"
         android:contentDescription="@string/registerImageDescription"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
