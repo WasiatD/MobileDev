@@ -26,12 +26,12 @@
                 android:id="@+id/dashboardLogo"
                 android:layout_width="120dp"
                 android:layout_height="60dp"
-                android:src="@drawable/Dashboard_Logo"
-                android:scaleType="fitStart"
-                android:padding="8dp"
                 android:clickable="true"
                 android:focusable="true"
-                android:onClick="onItemClick" />
+                android:onClick="onItemClick"
+                android:padding="8dp"
+                android:scaleType="fitStart"
+                android:src="@drawable/dashboard_logo" />
 
             <!-- Spacer to push the next items to the right -->
             <Space
@@ -50,24 +50,24 @@
                     android:id="@+id/userLogo"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/userlogo"
-                    android:padding="8dp"
+                    android:layout_gravity="end"
                     android:clickable="true"
                     android:focusable="true"
                     android:onClick="onItemClick"
-                    android:layout_gravity="end" />
+                    android:padding="8dp"
+                    android:src="@drawable/userlogo" />
 
                 <!-- Third logo -->
                 <ImageView
                     android:id="@+id/menuLogo"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/menuLogo"
-                    android:padding="8dp"
+                    android:layout_gravity="end"
                     android:clickable="true"
                     android:focusable="true"
                     android:onClick="onItemClick"
-                    android:layout_gravity="end" />
+                    android:padding="8dp"
+                    android:src="@drawable/menu_logo" />
 
             </LinearLayout>
 
@@ -79,7 +79,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/appbar">
@@ -114,13 +114,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
-                    android:layout_marginTop="16dp"
                     android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
                     android:padding="8dp"
                     android:text="DASHBOARD"
                     android:textColor="#FFFFFF"
                     android:textSize="24sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/textOnGif"
                     android:layout_width="wrap_content"
@@ -209,10 +210,10 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="12dp"
                 android:layout_marginTop="16dp"
                 app:cardCornerRadius="16dp"
-                app:cardElevation="8dp"
-                android:layout_margin="12dp">
+                app:cardElevation="8dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -223,12 +224,12 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-condensed"
                         android:padding="12dp"
                         android:text="THIS PLANT NEED FOLLOWING TREATMENT"
                         android:textColor="#FF0000"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:fontFamily="sans-serif-condensed" />
+                        android:textStyle="bold" />
 
                     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                         android:layout_width="match_parent"
@@ -243,8 +244,8 @@
                             android:layout_weight="1"
                             android:padding="8dp"
                             android:text="Plant Name"
-                            android:textColor="#FF4CAF50"
-                            android:textAppearance="?attr/textAppearanceListItem" />
+                            android:textAppearance="?attr/textAppearanceListItem"
+                            android:textColor="#FF4CAF50" />
 
                         <TextView
                             android:id="@+id/status"
@@ -253,8 +254,8 @@
                             android:layout_weight="1"
                             android:padding="8dp"
                             android:text="Status"
-                            android:textColor="#FF5722"
-                            android:textAppearance="?attr/textAppearanceListItem" />
+                            android:textAppearance="?attr/textAppearanceListItem"
+                            android:textColor="#FF5722" />
 
                         <TextView
                             android:id="@+id/time"
@@ -277,4 +278,15 @@
             </androidx.cardview.widget.CardView>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <!-- Bottom Navigation View -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_navigation_menu" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

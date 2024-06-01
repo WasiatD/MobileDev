@@ -16,8 +16,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        gifImageView = findViewById<GifImageView>(R.id.gifImageView)
-        recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
 
         // Set up the RecyclerView
         recyclerView?.apply {
