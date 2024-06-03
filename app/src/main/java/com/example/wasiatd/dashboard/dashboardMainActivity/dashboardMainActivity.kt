@@ -38,8 +38,11 @@ class dashboardMainActivity : AppCompatActivity() {
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.navigation_home -> {
-                    supportFragmentManager.beginTransaction().hide(activeFragment).show(homeFragment).commit()
-                    activeFragment = homeFragment
+                    val homeFragment = HomeFragment.newInstance("param1", "param2")
+                    supportFragmentManager.commit {
+                        replace(R.id.fragment_container, homeFragment)
+                        addToBackStack(null) // Optional: Add transaction to back stack
+                    }
                     true
                 }
                 R.id.navigation_plant -> {
