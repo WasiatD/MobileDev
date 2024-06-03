@@ -1,8 +1,8 @@
-package com.example.yourapp
+package com.example.wasiatd.utils
 
 data class ItemDataDashboard(
-    val column1: String,
-    val column2: String,
-    val column3: String,
-    val gridData: List<String>
+    val name: String,
+    val status: String,
+    val time: String
+
 )
