@@ -23,4 +23,6 @@
     <string name="signUpLabel">Sign Up</string>
     <string name="nameHint">Name</string>
     <string name="nameText">Afif Udin Pol Ganteng</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

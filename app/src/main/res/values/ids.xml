@@ -1,6 +1,6 @@
 <resources>
     <item name="navigation_home" type="id" />
-    <item name="navigation_dashboard" type="id" />
-    <item name="navigation_notifications" type="id" />
-    <item name="navigation_profile" type="id" />
+    <item name="navigation_plant" type="id" />
+    <item name="navigation_tasks" type="id" />
+    <item name="navigation_search" type="id" />
 </resources>

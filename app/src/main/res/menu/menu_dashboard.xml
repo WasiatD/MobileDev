@@ -4,15 +4,15 @@
         android:title="Home"
         android:icon="@drawable/home_icon"/>
     <item
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_plant"
         android:title="Plant"
         android:icon="@drawable/plant_icon"/>
     <item
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_tasks"
         android:title="Tasks"
         android:icon="@drawable/task_icon"/>
     <item
-        android:id="@+id/navigation_profile"
+        android:id="@+id/navigation_search"
         android:title="Search"
         android:icon="@drawable/search_icon"/>
 </menu>
