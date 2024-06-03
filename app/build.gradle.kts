@@ -40,6 +40,8 @@ dependencies {
     implementation("pl.droidsonroids.gif:android-gif-drawable:1.2.17")
     implementation ("androidx.cardview:cardview:1.0.0")
     implementation ("com.google.android.material:material:1.3.0")
+    implementation ("androidx.fragment:fragment-ktx:1.4.0")
+
 
 
 

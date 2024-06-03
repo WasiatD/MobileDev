@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.commit
 import com.example.wasiatd.R
 import com.example.wasiatd.fragments.HomeFragment
 import com.example.wasiatd.fragments.PlantFragment
@@ -42,8 +43,11 @@ class dashboardMainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.navigation_plant -> {
-                    supportFragmentManager.beginTransaction().hide(activeFragment).show(plantFragment).commit()
-                    activeFragment = plantFragment
+                    val plantFragment = PlantFragment.newInstance("param1", "param2")
+                    supportFragmentManager.commit {
+                        replace(R.id.fragment_container, plantFragment)
+                        addToBackStack(null) // Optional: Add transaction to back stack
+                    }
                     true
                 }
                 R.id.navigation_tasks -> {
