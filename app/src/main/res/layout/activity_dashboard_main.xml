@@ -33,29 +33,15 @@
                 android:scaleType="fitStart"
                 android:src="@drawable/dashboard_logo" />
 
-            <!-- Spacer to push the next items to the right -->
-            <Space
-                android:layout_width="164dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
 
             <!-- Right-aligned logos -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginRight="16dp"
+                android:layout_gravity="end">
 
-                <!-- Second logo -->
-                <ImageView
-                    android:id="@+id/userLogo"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="end"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:onClick="onItemClick"
-                    android:padding="8dp"
-                    android:src="@drawable/userlogo" />
 
                 <!-- Third logo -->
                 <ImageView

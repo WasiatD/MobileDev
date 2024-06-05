@@ -5,10 +5,87 @@
     android:layout_height="match_parent"
     tools:context=".fragments.PlantFragment">
 
-    <TextView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Plant Fragment Is working" />
+        android:layout_height="match_parent">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- FrameLayout containing the GIF and the overlay -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!-- Background GIF ImageView -->
+                <pl.droidsonroids.gif.GifImageView
+                    android:id="@+id/gifImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="#000"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/register_gif" />
+
+                <!-- Dark overlay view -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#80000000" /> <!-- 50% black -->
+
+                <!-- Text on top of the GIF -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:padding="8dp"
+                    android:text="Your Plants"
+                    android:textColor="#FFFFFF"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <!-- Button below the TextView -->
+                <Button
+                android:id="@+id/btnAddPlant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|center"
+                android:backgroundTint="@color/green_stroke"
+                android:drawablePadding="8dp"
+                android:layout_marginLeft="24dp"
+                android:elevation="4dp"
+                android:padding="12dp"
+                android:text="Add Plant"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:drawableRight="@drawable/baseline_add_24"
+                tools:ignore="MissingConstraints" />
+
+
+                <LinearLayout
+                    android:id="@+id/boxContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="160dp"
+                    android:background="@drawable/rounded_corner_dashboard"
+                    android:orientation="horizontal"
+                    android:padding="20dp">
+
+                </LinearLayout>
+            </FrameLayout>
+
+            <!-- RecyclerView -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:clipToPadding="false"
+                android:scrollbars="vertical" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 </FrameLayout>
