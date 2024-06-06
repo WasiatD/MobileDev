@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddPlantActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="MissingConstraints">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_shape_toolbar"
+                app:navigationIcon="@drawable/baseline_arrow_back_24"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:title="Add Plant"
+                app:titleTextColor="@color/green_stroke">
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <pl.droidsonroids.gif.GifImageView
+                    android:id="@+id/backgroundImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:contentDescription="@string/registerImageDescription"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/gif_dashboard"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_bold"
+                        android:text="Add New Plant"
+                        android:textColor="@color/green_stroke"
+                        android:textSize="36sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter"
+                        android:text="Don't forget to keep you plant healthy"
+                        android:textColor="@color/green_stroke"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/labelName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="Plant name"
+                        android:textColor="@android:color/black"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toTopOf="@+id/emailField"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/subtitleText"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <EditText
+                        android:id="@+id/plant_name_field"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:autofillHints="emailAddress"
+                        android:background="@drawable/edit_text_background"
+                        android:fontFamily="@font/inter"
+                        android:hint="Masukkan nama tanaman"
+                        android:inputType="textEmailAddress"
+                        android:padding="12dp"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/labelName" />
+
+                    <TextView
+                        android:id="@+id/labelPlace"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="Place"
+                        android:textColor="@android:color/black"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toTopOf="@+id/plant_name_field"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <EditText
+                        android:id="@+id/emailField"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:autofillHints="emailAddress"
+                        android:background="@drawable/edit_text_background"
+                        android:fontFamily="@font/inter"
+                        android:hint="Masukkan lokasi tanaman anda"
+                        android:inputType="textEmailAddress"
+                        android:padding="12dp"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/labelPlace" />
+
+                    <TextView
+                        android:id="@+id/labelDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="Date"
+                        android:textColor="@android:color/black"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toTopOf="@+id/plant_name_field"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <EditText
+                        android:id="@+id/date_field"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:autofillHints="emailAddress"
+                        android:background="@drawable/edit_text_background"
+                        android:fontFamily="@font/inter"
+                        android:hint="Masukkan tanggal tanam"
+                        android:inputType="textEmailAddress"
+                        android:padding="12dp"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/labelDate" />
+
+                    <TextView
+                        android:id="@+id/labelImage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="Image"
+                        android:textColor="@android:color/black"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toTopOf="@+id/plant_name_field"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <ImageView
+                        android:id="@+id/selected_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/edit_text_background"
+                        android:contentDescription="@string/registerImageDescription"
+                        android:onClick="selectImage"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/image_placeholder"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/labelImage" />
+
+                    <Button
+                        android:id="@+id/signUpButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:backgroundTint="@color/sage_green"
+                        android:padding="12dp"
+                        android:text="Add plant"
+                        android:textColor="@android:color/white"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/passwordField" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

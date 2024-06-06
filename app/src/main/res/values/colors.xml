@@ -3,8 +3,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="light_green">#f0ffed</color>
-    <color name="light_gray">#BCBBBB</color>
-    <color name="green_stroke">#308000</color>
+    <color name="light_gray">#D0D0D0</color>
+    <color name="green_stroke">#366D53</color>
     <color name="sage_green">#004424</color>
     <color name="red">#FF0000</color>
 
