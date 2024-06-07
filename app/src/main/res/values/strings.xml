@@ -43,4 +43,12 @@
     <string name="soil">2234</string>
     <string name="timeSchedule">21:48</string>
     <string name="temperature">25</string>
+    <string name="search">Search</string>
+
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="searchLabel">Want to search something?</string>
 </resources>

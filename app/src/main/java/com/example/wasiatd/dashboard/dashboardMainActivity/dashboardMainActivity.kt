@@ -28,8 +28,6 @@ class dashboardMainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_dashboard_main)
 
         // Inside onCreateView() or onViewCreated() of each fragment
-
-
         supportFragmentManager.beginTransaction().apply {
             add(R.id.fragment_container, searchFragment, "4")
             hide(searchFragment)
