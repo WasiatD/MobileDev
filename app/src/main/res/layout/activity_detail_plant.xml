@@ -168,6 +168,130 @@
                         app:layout_constraintTop_toBottomOf="@id/labelDate" />
 
                     <TextView
+                        android:id="@+id/isWateringLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="@string/isWateringLabel"
+                        android:textColor="@android:color/black"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toTopOf="@+id/plant_name_field"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <EditText
+                        android:id="@+id/isWatering"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:inputType="date"
+                        android:background="@drawable/edit_text_background_white"
+                        android:fontFamily="@font/inter"
+                        android:enabled="false"
+                        android:textColor="@color/black"
+                        android:text="@string/isWatering"
+                        android:padding="12dp"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/labelDate" />
+
+                    <TextView
+                        android:id="@+id/soilLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="@string/soilLabel"
+                        android:textColor="@android:color/black"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toTopOf="@+id/plant_name_field"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <EditText
+                        android:id="@+id/soil"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:inputType="date"
+                        android:background="@drawable/edit_text_background_white"
+                        android:fontFamily="@font/inter"
+                        android:enabled="false"
+                        android:textColor="@color/black"
+                        android:text="@string/soil"
+                        android:padding="12dp"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/labelDate" />
+
+                    <TextView
+                        android:id="@+id/temperatureLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="@string/temperatureLabel"
+                        android:textColor="@android:color/black"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toTopOf="@+id/plant_name_field"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <EditText
+                        android:id="@+id/temperature"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:inputType="date"
+                        android:background="@drawable/edit_text_background_white"
+                        android:fontFamily="@font/inter"
+                        android:enabled="false"
+                        android:textColor="@color/black"
+                        android:text="@string/temperature"
+                        android:padding="12dp"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/labelDate" />
+
+                    <TextView
+                        android:id="@+id/timeScheduleLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="@string/timeScheduleLabel"
+                        android:textColor="@android:color/black"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toTopOf="@+id/plant_name_field"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <EditText
+                        android:id="@+id/timeSchedule"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:inputType="date"
+                        android:background="@drawable/edit_text_background_white"
+                        android:fontFamily="@font/inter"
+                        android:enabled="false"
+                        android:textColor="@color/black"
+                        android:text="@string/timeSchedule"
+                        android:padding="12dp"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/labelDate" />
+
+                    <TextView
                         android:id="@+id/informationLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

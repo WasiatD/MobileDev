@@ -27,17 +27,20 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="loginPageText">Login</string>
 
-    <!-- Dashboard logo content desc     -->
     <string name="plantLabel">Plant Name</string>
     <string name="latinLabel">Scientific Name</string>
-    <string name="dateLabel">Scientific Name</string>
+    <string name="dateLabel">Planted Date</string>
     <string name="plantInfoLabel">Plant Information</string>
+    <string name="isWateringLabel">Has it been watered?</string>
+    <string name="soilLabel">Soil</string>
+    <string name="timeScheduleLabel">Time Schedule</string>
+    <string name="temperatureLabel">Temperature</string>
     <string name="plantName">Tomat</string>
     <string name="plantLatinName">Solanum lycopersicum</string>
-    <string name="plantInformation">Tomat adalah tumbuhan yang berasal dari Amerika Tengah dan Selatan, dari Meksiko hingga Peru. Tumbuhan ini ditanam sebagai tanaman buah-buahan. Buahnya yang berwarna merah ketika masak biasanya digunakan sebagai sayuran dalam berbagai masakan atau dimakan secara langsung.
-        Tomat adalah tumbuhan yang berasal dari Amerika Tengah dan Selatan, dari Meksiko hingga Peru.
-        Tumbuhan ini ditanam sebagai tanaman buah-buahan. Buahnya yang berwarna merah ketika masak biasanya
-        digunakan sebagai sayuran dalam berbagai masakan atau dimakan secara langsung. Tomat adalah tumbuhan yang berasal dari Amerika Tengah dan Selatan, dari Meksiko hingga Peru. Tumbuhan ini ditanam sebagai tanaman buah-buahan. Buahnya yang berwarna merah ketika masak
-        biasanya digunakan sebagai sayuran dalam berbagai masakan atau dimakan secara langsung.</string>
-    <string name="plantedDate">20-02-2024</string>
+    <string name="plantInformation">Udin Ganteng Banget</string>
+    <string name="plantedDate">20/02/2024</string>
+    <string name="isWatering">No</string>
+    <string name="soil">2234</string>
+    <string name="timeSchedule">21:48</string>
+    <string name="temperature">25</string>
 </resources>
