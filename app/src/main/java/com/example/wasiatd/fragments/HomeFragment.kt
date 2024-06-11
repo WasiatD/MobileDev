@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.wasiatd.R
-import com.example.wasiatd.utils.ItemDataDashboard
+import com.example.wasiatd.data.local.ItemDataDashboard
 import DashboardAdapter
 
 private const val ARG_PARAM1 = "param1"
@@ -38,9 +38,9 @@ class HomeFragment : Fragment() {
 
         // Create dummy data
         val dummyData = listOf(
-            ItemDataDashboard("Plant 1", "Healthy", "10:00 AM"),
-            ItemDataDashboard("Plant 2", "Needs Water", "11:00 AM"),
-            ItemDataDashboard("Plant 3", "Fertilized", "12:00 PM")
+            ItemDataDashboard("com.example.wasiatd.data.local.Plant 1", "Healthy", "10:00 AM"),
+            ItemDataDashboard("com.example.wasiatd.data.local.Plant 2", "Needs Water", "11:00 AM"),
+            ItemDataDashboard("com.example.wasiatd.data.local.Plant 3", "Fertilized", "12:00 PM")
         )
 
         val adapter = DashboardAdapter(dummyData)

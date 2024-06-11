@@ -1,19 +1,14 @@
 package com.example.wasiatd.dashboard.dashboardMainActivity
 
-import DashboardAdapter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.commit
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.wasiatd.R
 import com.example.wasiatd.fragments.HomeFragment
 import com.example.wasiatd.fragments.PlantFragment
 import com.example.wasiatd.fragments.TasksFragment
 import com.example.wasiatd.fragments.SearchFragment
-import com.example.wasiatd.utils.ItemDataDashboard
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class dashboardMainActivity : AppCompatActivity() {

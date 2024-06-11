@@ -1,6 +1,6 @@
 package com.example.wasiatd.fragments
 
-import Plant
+import com.example.wasiatd.data.local.Plant
 import PlantAdapter
 import android.content.Intent
 import android.net.Uri

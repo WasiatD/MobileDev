@@ -1,4 +1,4 @@
-package com.example.wasiatd.utils
+package com.example.wasiatd.data.local
 
 data class ItemDataTask (
     val title: String,

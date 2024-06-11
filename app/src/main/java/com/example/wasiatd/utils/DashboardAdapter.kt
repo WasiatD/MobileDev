@@ -4,7 +4,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.wasiatd.R
-import com.example.wasiatd.utils.ItemDataDashboard
+import com.example.wasiatd.data.local.ItemDataDashboard
 
 class DashboardAdapter(private val plantList: List<ItemDataDashboard>) : RecyclerView.Adapter<DashboardAdapter.PlantViewHolder>() {
 

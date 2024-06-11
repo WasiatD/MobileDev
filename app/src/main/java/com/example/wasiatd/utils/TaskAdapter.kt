@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.wasiatd.R
+import com.example.wasiatd.data.local.ItemDataTask
 
 class TaskAdapter(private val taskList: List<ItemDataTask>) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
 

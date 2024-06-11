@@ -8,8 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.wasiatd.R
-import com.example.wasiatd.utils.ItemDataDashboard
-import com.example.wasiatd.utils.ItemDataTask
+import com.example.wasiatd.data.local.ItemDataTask
 import com.example.wasiatd.utils.TaskAdapter
 
 // TODO: Rename parameter arguments, choose names that match

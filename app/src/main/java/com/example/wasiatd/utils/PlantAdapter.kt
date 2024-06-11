@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.wasiatd.DetailPlantActivity
 import com.example.wasiatd.R
+import com.example.wasiatd.data.local.Plant
 
 class PlantAdapter(private val plantList: List<Plant>) : RecyclerView.Adapter<PlantAdapter.PlantViewHolder>() {
 
