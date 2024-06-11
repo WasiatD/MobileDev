@@ -43,7 +43,16 @@
     <string name="soil">2234</string>
     <string name="timeSchedule">21:48</string>
     <string name="temperature">25</string>
-    <string name="search">Search</string>
+    <string name="search">Search</string>s
+    <string name="addTask">Add Task</string>
+    <string name="taskLabel">Here is your to-do-list!</string>
+
+    <string name="taskCreate">15 Minutes Ago</string>
+    <string name="taskTitle">Watering the plants</string>
+    <string name="taskDescription">Lorem Ipsum is simply dummy text of the printing
+        and  typesetting industry. Lorem Ipsum has been the industrys standard dummy
+        text ever since the 1500s,
+    </string>
 
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
