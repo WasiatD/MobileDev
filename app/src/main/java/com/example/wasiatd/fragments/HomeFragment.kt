@@ -59,10 +59,10 @@ class HomeFragment : Fragment() {
                             // Access properties of isiItem
                             val id = isiItem?.id
                             val lokasi = isiItem?.lokasi
-                            val tanama = isiItem?.tanama
+                            val tanaman = isiItem?.Tanaman
 
                             // Create an ItemDataDashboard object using selected properties from IsiItem
-                            val itemDataDashboard = ItemDataDashboard("$id", "$lokasi", "$tanama")
+                            val itemDataDashboard = ItemDataDashboard("$id", "$lokasi", "$tanaman")
 
                             // Add the ItemDataDashboard object to the list
                             itemDataDashboardList.add(itemDataDashboard)

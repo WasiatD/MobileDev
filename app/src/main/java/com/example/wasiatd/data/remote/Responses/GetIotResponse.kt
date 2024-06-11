@@ -20,6 +20,6 @@ data class IsiItem(
 	@field:SerializedName("Lokasi")
 	val lokasi: String? = null,
 
-	@field:SerializedName("Tanama")
-	val tanama: String? = null
+	@field:SerializedName("Tanaman")
+	val Tanaman: String? = null
 ) : Parcelable
