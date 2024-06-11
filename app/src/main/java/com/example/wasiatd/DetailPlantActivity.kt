@@ -11,10 +11,16 @@ import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.example.wasiatd.data.remote.config.ApiConfig
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.io.ByteArrayOutputStream
 
 class DetailPlantActivity : AppCompatActivity() {
@@ -88,9 +94,11 @@ class DetailPlantActivity : AppCompatActivity() {
         }
 
         decodeButton.setOnClickListener {
-            base64Image?.let {
-                val decodedBitmap = base64ToBitmap(it)
+            base64Image?.let {encodedImage ->
+                sendImageToApi(encodedImage)
+                val decodedBitmap = base64ToBitmap(encodedImage)
                 plantImageView.setImageBitmap(decodedBitmap)
+
             }
         }
     }
@@ -108,18 +116,26 @@ class DetailPlantActivity : AppCompatActivity() {
     }
 
     private fun sendImageToApi(base64Image: String) {
-        // Implement your API call here
-        // Example:
-        // val apiService = ApiClient.createService(ApiService::class.java)
-        // val call = apiService.uploadImage(base64Image)
-        // call.enqueue(object : Callback<ApiResponse> {
-        //     override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
-        //         // Handle successful response
-        //     }
-        //
-        //     override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
-        //         // Handle failure
-        //     }
-        // })
+        val apiService = ApiConfig().apiService
+
+        GlobalScope.launch(Dispatchers.IO) {
+            try {
+                // Call the predictDisease endpoint with the base64 encoded image
+                val response = apiService.predictDisease(base64Image)
+                // Handle the response accordingly
+                // For example, you can log the response
+                Log.d("API Response", response.toString())
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(applicationContext, "API Response: $response", Toast.LENGTH_SHORT).show()
+                }
+            } catch (e: Exception) {
+                // Handle exceptions
+                Log.e("API Error", e.message ?: "Unknown error")
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(applicationContext, "API Error: ${e.message ?: "Unknown error"}", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
     }
+
 }

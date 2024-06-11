@@ -10,6 +10,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.wasiatd.R
 import com.example.wasiatd.data.local.ItemDataDashboard
 import DashboardAdapter
+import android.util.Log
+import com.example.wasiatd.data.remote.config.ApiConfig
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -25,7 +31,6 @@ class HomeFragment : Fragment() {
             param2 = it.getString(ARG_PARAM2)
         }
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,18 +41,48 @@ class HomeFragment : Fragment() {
         val recyclerView: RecyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(context)
 
-        // Create dummy data
-        val dummyData = listOf(
-            ItemDataDashboard("com.example.wasiatd.data.local.Plant 1", "Healthy", "10:00 AM"),
-            ItemDataDashboard("com.example.wasiatd.data.local.Plant 2", "Needs Water", "11:00 AM"),
-            ItemDataDashboard("com.example.wasiatd.data.local.Plant 3", "Fertilized", "12:00 PM")
-        )
+        // Initialize Retrofit and ApiService
+        val apiService = ApiConfig().apiService
 
-        val adapter = DashboardAdapter(dummyData)
-        recyclerView.adapter = adapter
+        // Create an empty list to hold IsiItem objects
+        // Create an empty list to hold ItemDataDashboard objects
+        val itemDataDashboardList = mutableListOf<ItemDataDashboard>()
+
+        GlobalScope.launch(Dispatchers.IO) {
+            try {
+                val response = apiService.getIot()
+                val dataFromApi = response.isi
+                withContext(Dispatchers.Main) {
+                    dataFromApi?.let { isiItems ->
+                        // Iterate through each IsiItem object
+                        for (isiItem in isiItems) {
+                            // Access properties of isiItem
+                            val id = isiItem?.id
+                            val lokasi = isiItem?.lokasi
+                            val tanama = isiItem?.tanama
+
+                            // Create an ItemDataDashboard object using selected properties from IsiItem
+                            val itemDataDashboard = ItemDataDashboard("$id", "$lokasi", "$tanama")
+
+                            // Add the ItemDataDashboard object to the list
+                            itemDataDashboardList.add(itemDataDashboard)
+                        }
+
+                        // Create adapter with the list of ItemDataDashboard objects and set it to RecyclerView
+                        val adapter = DashboardAdapter(itemDataDashboardList)
+                        recyclerView.adapter = adapter
+                    }
+                }
+            } catch (e: Exception) {
+                // Handle API error
+                Log.e("API Error", e.message ?: "Unknown error")
+            }
+        }
+
 
         return view
     }
+
 
     companion object {
         @JvmStatic
