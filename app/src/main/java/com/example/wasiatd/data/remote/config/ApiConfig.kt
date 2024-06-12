@@ -1,34 +1,53 @@
 package com.example.wasiatd.data.remote.config
 
+import com.example.wasiatd.BuildConfig
 import com.example.wasiatd.data.remote.constants
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import okhttp3.Protocol
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class ApiConfig {
+    companion object {
+        private var auth: String? = null
 
-    private val loggingInterceptor = HttpLoggingInterceptor().apply {
-        level = HttpLoggingInterceptor.Level.BODY
-    }
+        fun getApiService(): ApiServices {
+            val loggingInterceptor = if (BuildConfig.DEBUG) {
+                HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+            } else {
+                HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE)
+            }
 
-    private val httpClient = OkHttpClient.Builder()
-        .addInterceptor(loggingInterceptor)
-        .also {
-            it.protocols(listOf(Protocol.HTTP_1_1))
+            val authInterceptor = Interceptor { chain ->
+                val req = chain.request()
+                val requestHeaders = req.newBuilder()
+                    .addHeader("Authorization", "Bearer $auth")
+                    .build()
+                chain.proceed(requestHeaders)
+            }
+
+            val client = OkHttpClient.Builder()
+                .addInterceptor(loggingInterceptor)
+                .addInterceptor(authInterceptor)
+                .build()
+
+            val retrofit by lazy {
+                Retrofit.Builder()
+                    .baseUrl(constants.BASE_URL)
+                    .client(client)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build()
+            }
+            return retrofit.create(ApiServices::class.java)
         }
-        .build()
 
-    private val retrofit by lazy {
-        Retrofit.Builder()
-            .baseUrl(constants.BASE_URL)
-            .client(httpClient)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-    }
+        fun setAuth(auth: String) {
+            Companion.auth = auth
+        }
 
-    val apiService: ApiServices by lazy {
-        retrofit.create(ApiServices::class.java)
+        fun clearAuth() {
+            auth = null
+        }
     }
 }

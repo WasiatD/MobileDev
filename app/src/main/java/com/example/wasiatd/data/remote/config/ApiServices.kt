@@ -1,11 +1,9 @@
 package com.example.wasiatd.data.remote.config
-import com.example.wasiatd.data.local.Plant
-import com.example.wasiatd.data.remote.Responses.DiseaseInfoResponse
-import com.example.wasiatd.data.remote.Responses.GetIotResponse
-import com.example.wasiatd.data.remote.Responses.IsiItem
-import com.example.wasiatd.data.remote.Responses.PredictResponse
+import com.example.wasiatd.data.remote.responses.DiseaseInfoResponse
+import com.example.wasiatd.data.remote.responses.GetIotResponse
+import com.example.wasiatd.data.remote.responses.IsiItem
+import com.example.wasiatd.data.remote.responses.PredictResponse
 import com.example.wasiatd.data.remote.constants
-import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Query

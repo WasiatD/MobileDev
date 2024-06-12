@@ -48,7 +48,7 @@ class HomeFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
 
         // Initialize Retrofit and ApiService
-        val apiService = ApiConfig().apiService
+        val apiService = ApiConfig.getApiService()
 
         // Create an empty list to hold ItemDataDashboard objects
         val itemDataDashboardList = mutableListOf<ItemDataDashboard>()

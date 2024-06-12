@@ -1,4 +1,4 @@
-package com.example.wasiatd.data.remote.Responses
+package com.example.wasiatd.data.remote.responses
 
 import kotlinx.parcelize.Parcelize
 import android.os.Parcelable

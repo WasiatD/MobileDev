@@ -150,7 +150,8 @@ class DetailPlantActivity : AppCompatActivity() {
     }
 
     private fun sendImageToApi(base64Image: String) {
-        val apiService = ApiConfig().apiService
+       val apiService = ApiConfig.getApiService()
+
 
         GlobalScope.launch(Dispatchers.IO) {
             try {
