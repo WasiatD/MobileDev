@@ -1,39 +1,76 @@
 package com.example.wasiatd.utils
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
+import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.wasiatd.R
 import com.example.wasiatd.dashboard.dashboardMainActivity.dashboardMainActivity
+import com.example.wasiatd.data.remote.config.ApiConfig
+import com.example.wasiatd.databinding.ActivityLoginBinding
+import org.json.JSONObject
 
 class LoginActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityLoginBinding
+    private lateinit var sharedPreferences: SharedPreferences
+    private val loginViewModel by viewModels<LoginViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_login)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        supportActionBar?.hide()
+
+        sharedPreferences = getSharedPreferences("wasiatd-data", MODE_PRIVATE)
+
+        val auth = sharedPreferences.getString("idToken", null)
+        if(auth != null) {
+            ApiConfig.setAuth(auth)
+            val intent = Intent(this@LoginActivity, dashboardMainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
         }
 
-        val signUpButton:TextView = findViewById<Button>(R.id.loginLink)
-        signUpButton.setOnClickListener {
-            val intent = Intent(this, RegisterActivity::class.java)
-            startActivity(intent)
-            finish()
+        binding.loginButton.setOnClickListener {
+            if(binding.emailField.error == null && binding.passwordField.error == null) {
+                val email = binding.emailField.text.toString()
+                val password = binding.passwordField.text.toString()
+
+                loginViewModel.getLoginInfo(email, password)
+
+                loginViewModel.login.observe(this) {
+                    if (it?.registered == true) {
+                        val editor = sharedPreferences.edit()
+                        editor.putString("idToken", it.idToken)
+                        editor.putString("email", it.email)
+                        editor.apply()
+
+                        Toast.makeText(this@LoginActivity, "You are signed in!", Toast.LENGTH_SHORT).show()
+
+                        val intent = Intent(this@LoginActivity, dashboardMainActivity::class.java)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                        startActivity(intent)
+                    } else
+                        Toast.makeText(this, getString(R.string.invalidCredential), Toast.LENGTH_SHORT).show()
+                }
+
+                loginViewModel.errorMessage.observe(this) { errorMessage ->
+                    if(errorMessage != null) {
+                        val message = if(errorMessage == LoginViewModel.INVALID_CREDENTIALS) R.string.invalidCredential else R.string.systemFailure
+                        Toast.makeText(this, getString(message), Toast.LENGTH_SHORT).show()
+                        loginViewModel.clearErrorMessage()
+                    }
+                }
+            }
         }
 
-        val loginButton:Button = findViewById<Button>(R.id.loginButton)
-        loginButton.setOnClickListener(){
-            val intent = Intent(this, dashboardMainActivity::class.java)
+        binding.loginLink.setOnClickListener {
+            val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
             startActivity(intent)
-            finish()
         }
     }
 }

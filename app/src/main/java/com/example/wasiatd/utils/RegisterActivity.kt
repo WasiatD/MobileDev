@@ -2,35 +2,46 @@ package com.example.wasiatd.utils
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
+import android.util.Log
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.wasiatd.R
+import com.example.wasiatd.databinding.ActivityRegisterBinding
 
 class RegisterActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityRegisterBinding
+    private val registerViewModel by viewModels<RegisterViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_register)
+        binding = ActivityRegisterBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        // Set OnClickListener for the sign-up button
-        val signInButton: TextView = findViewById<Button>(R.id.subtitleText)
-        signInButton.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-            finish() // Optionally finish the RegisterActivity so user can't go back to it
+        supportActionBar?.hide()
+
+        binding.signUpButton.setOnClickListener {
+            Log.d("RegisterActivity", "Sign Up button clicked")
+
+            if(binding.emailField.error == null &&
+                binding.passwordField.error == null) {
+
+                val email = binding.emailField.text.toString()
+                val password = binding.passwordField.text.toString()
+
+                Log.d("RegisterActivity", "Email: $email, dan Password: $password")
+
+                registerViewModel.getRegisterResponse(email, password)
+            }
         }
 
-        // Set window insets listener for edge-to-edge layout
-        val mainLayout = findViewById<ConstraintLayout>(R.id.main)
-        ViewCompat.setOnApplyWindowInsetsListener(mainLayout) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+        binding.subtitleText.setOnClickListener {
+            backToLogin()
         }
+    }
+
+    private fun backToLogin() {
+        val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }

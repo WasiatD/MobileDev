@@ -65,6 +65,8 @@
         and  typesetting industry. Lorem Ipsum has been the industrys standard dummy
         text ever since the 1500s,
     </string>
+    <string name="invalidCredential">Invalid Credential, please try again!</string>
+    <string name="systemFailure">System Error! Please Try Again!</string>
 
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
