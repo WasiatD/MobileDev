@@ -42,19 +42,25 @@
                 android:layout_marginRight="16dp"
                 android:layout_gravity="end">
 
-
-                <!-- Third logo -->
                 <ImageView
-                    android:id="@+id/menuLogo"
+                    android:id="@+id/profileButton"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="end"
                     android:clickable="true"
                     android:focusable="true"
-                    android:onClick="onItemClick"
                     android:padding="8dp"
-                    android:src="@drawable/menu_logo" />
+                    android:src="@drawable/profile_logo" />
 
+                <ImageView
+                    android:id="@+id/logoutButton"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="end"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="8dp"
+                    android:src="@drawable/baseline_logout_24" />
             </LinearLayout>
 
         </androidx.appcompat.widget.Toolbar>

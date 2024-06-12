@@ -1,14 +1,20 @@
 package com.example.wasiatd.dashboard.dashboardMainActivity
 
+import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.example.wasiatd.R
+import com.example.wasiatd.data.remote.config.ApiConfig
 import com.example.wasiatd.fragments.HomeFragment
 import com.example.wasiatd.fragments.PlantFragment
 import com.example.wasiatd.fragments.TasksFragment
 import com.example.wasiatd.fragments.SearchFragment
+import com.example.wasiatd.utils.LoginActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class dashboardMainActivity : AppCompatActivity() {
@@ -16,13 +22,20 @@ class dashboardMainActivity : AppCompatActivity() {
     private val plantFragment = PlantFragment()
     private val tasksFragment = TasksFragment()
     private val searchFragment = SearchFragment()
+    private lateinit var sharedPreferences: SharedPreferences
     private var activeFragment: Fragment = homeFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard_main)
 
-        // Inside onCreateView() or onViewCreated() of each fragment
+        sharedPreferences = getSharedPreferences("wasiatd-data", MODE_PRIVATE)
+
+        val auth = sharedPreferences.getString("idToken", null)
+        if(auth != null) {
+            ApiConfig.setAuth(auth)
+        }
+
         supportFragmentManager.beginTransaction().apply {
             add(R.id.fragment_container, searchFragment, "4")
             hide(searchFragment)
@@ -71,6 +84,16 @@ class dashboardMainActivity : AppCompatActivity() {
                 }
                 else -> false
             }
+        }
+
+        val logoutButton = findViewById<ImageView>(R.id.logoutButton)
+        logoutButton.setOnClickListener {
+            sharedPreferences.edit().clear().apply()
+            ApiConfig.clearAuth()
+            val intent = Intent(this, LoginActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+            finish()
         }
     }
 }
