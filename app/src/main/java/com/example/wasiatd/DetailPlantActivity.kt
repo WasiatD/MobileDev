@@ -64,26 +64,28 @@ class DetailPlantActivity : AppCompatActivity() {
         var base64Image: String? = null
 
         // Initialize the camera launcher
-        cameraLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == RESULT_OK) {
-                val imageBitmap = result.data?.extras?.get("data") as Bitmap
-                currentBitmap = resizeAndCropBitmap(imageBitmap)
-                base64Image = bitmapToBase64(currentBitmap!!)
-                Log.d("Image Base64", base64Image!!)
-            }
-        }
-
-        galleryLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == RESULT_OK) {
-                val selectedImageUri = result.data?.data
-                selectedImageUri?.let {
-                    currentBitmap = uriToBitmap(it)
-                    currentBitmap = resizeAndCropBitmap(currentBitmap!!)
+        cameraLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                if (result.resultCode == RESULT_OK) {
+                    val imageBitmap = result.data?.extras?.get("data") as Bitmap
+                    currentBitmap = resizeAndCropBitmap(imageBitmap)
                     base64Image = bitmapToBase64(currentBitmap!!)
                     Log.d("Image Base64", base64Image!!)
                 }
             }
-        }
+
+        galleryLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                if (result.resultCode == RESULT_OK) {
+                    val selectedImageUri = result.data?.data
+                    selectedImageUri?.let {
+                        currentBitmap = uriToBitmap(it)
+                        currentBitmap = resizeAndCropBitmap(currentBitmap!!)
+                        base64Image = bitmapToBase64(currentBitmap!!)
+                        Log.d("Image Base64", base64Image!!)
+                    }
+                }
+            }
 
         cameraButton.setOnClickListener {
             val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
@@ -91,7 +93,8 @@ class DetailPlantActivity : AppCompatActivity() {
         }
 
         galleryButton.setOnClickListener {
-            val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            val galleryIntent =
+                Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             galleryLauncher.launch(galleryIntent)
         }
 
@@ -106,10 +109,14 @@ class DetailPlantActivity : AppCompatActivity() {
 
     private fun bitmapToBase64(bitmap: Bitmap): String {
         val byteArrayOutputStream = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 70, byteArrayOutputStream) // Adjust quality as needed
         val byteArray = byteArrayOutputStream.toByteArray()
-        return Base64.encodeToString(byteArray, Base64.DEFAULT)
+        val base64String = Base64.encodeToString(byteArray, Base64.DEFAULT)
+        Log.d("Base64 Length", "Base64 String Length: ${base64String.length}")
+        Log.d("Decoded Data Length", "Decoded Data Length: ${byteArray.size}")
+        return base64String
     }
+
 
     private fun base64ToBitmap(base64Str: String): Bitmap {
         val decodedBytes = Base64.decode(base64Str, Base64.DEFAULT)
@@ -127,8 +134,14 @@ class DetailPlantActivity : AppCompatActivity() {
 
     private fun resizeAndCropBitmap(bitmap: Bitmap): Bitmap {
         val dimension = minOf(bitmap.width, bitmap.height)
-        val croppedBitmap = Bitmap.createBitmap(bitmap, (bitmap.width - dimension) / 2, (bitmap.height - dimension) / 2, dimension, dimension)
-        return Bitmap.createScaledBitmap(croppedBitmap, 299, 299, true)
+        val croppedBitmap = Bitmap.createBitmap(
+            bitmap,
+            (bitmap.width - dimension) / 2,
+            (bitmap.height - dimension) / 2,
+            dimension,
+            dimension
+        )
+        return Bitmap.createScaledBitmap(croppedBitmap, 299, 299, true) // Reduce size to 150x150
     }
 
     private fun sendImageToApi(base64Image: String) {
@@ -145,13 +158,21 @@ class DetailPlantActivity : AppCompatActivity() {
                     // Assuming response contains a field `predictedClass` with the plant information
                     val plantInfo = response.predictedClass
                     plantInformation.text = plantInfo
-                    Toast.makeText(applicationContext, "API Response: $response", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        applicationContext,
+                        "API Response: $response",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             } catch (e: Exception) {
                 // Handle exceptions
                 Log.e("API Error", e.message ?: "Unknown error")
                 withContext(Dispatchers.Main) {
-                    Toast.makeText(applicationContext, "API Error: ${e.message ?: "Unknown error"}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        applicationContext,
+                        "API Error: ${e.message ?: "Unknown error"}",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         }
