@@ -1,9 +1,10 @@
 package com.example.wasiatd
 
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
+import android.graphics.*
+import android.graphics.ImageDecoder
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Base64
@@ -27,6 +28,7 @@ class DetailPlantActivity : AppCompatActivity() {
 
     private lateinit var cameraLauncher: ActivityResultLauncher<Intent>
     private lateinit var galleryLauncher: ActivityResultLauncher<Intent>
+    private lateinit var plantInformation: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +42,8 @@ class DetailPlantActivity : AppCompatActivity() {
             finish() // Handle back navigation when the back button is pressed
         }
 
+        plantInformation = findViewById(R.id.plantInformation)
+
         val plantName = intent.getStringExtra("plant_name")
         val plantImageUri = intent.getStringExtra("plant_image_uri")?.let { Uri.parse(it) }
 
@@ -48,6 +52,8 @@ class DetailPlantActivity : AppCompatActivity() {
         val cameraButton: Button = findViewById(R.id.button_open_camera)
         val galleryButton: Button = findViewById(R.id.button_open_gallery)
         val decodeButton: Button = findViewById(R.id.button_decode)
+
+        plantInformation.text = "Lorem Ipsum"
 
         plantNameTextView.text = plantName
         plantImageUri?.let {
@@ -61,22 +67,18 @@ class DetailPlantActivity : AppCompatActivity() {
         cameraLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK) {
                 val imageBitmap = result.data?.extras?.get("data") as Bitmap
-                currentBitmap = imageBitmap
-
-//                plantImageView.setImageBitmap(imageBitmap)
+                currentBitmap = resizeAndCropBitmap(imageBitmap)
                 base64Image = bitmapToBase64(currentBitmap!!)
                 Log.d("Image Base64", base64Image!!)
             }
         }
 
-        // Initialize the gallery launcher
         galleryLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK) {
                 val selectedImageUri = result.data?.data
                 selectedImageUri?.let {
-//                    Glide.with(this).load(it).into(plantImageView)
-                    val imageBitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, it)
-                    currentBitmap = imageBitmap
+                    currentBitmap = uriToBitmap(it)
+                    currentBitmap = resizeAndCropBitmap(currentBitmap!!)
                     base64Image = bitmapToBase64(currentBitmap!!)
                     Log.d("Image Base64", base64Image!!)
                 }
@@ -94,11 +96,10 @@ class DetailPlantActivity : AppCompatActivity() {
         }
 
         decodeButton.setOnClickListener {
-            base64Image?.let {encodedImage ->
+            base64Image?.let { encodedImage ->
                 sendImageToApi(encodedImage)
                 val decodedBitmap = base64ToBitmap(encodedImage)
                 plantImageView.setImageBitmap(decodedBitmap)
-
             }
         }
     }
@@ -115,6 +116,21 @@ class DetailPlantActivity : AppCompatActivity() {
         return BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
     }
 
+    private fun uriToBitmap(selectedImageUri: Uri): Bitmap? {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            val source = ImageDecoder.createSource(this.contentResolver, selectedImageUri)
+            ImageDecoder.decodeBitmap(source)
+        } else {
+            MediaStore.Images.Media.getBitmap(this.contentResolver, selectedImageUri)
+        }
+    }
+
+    private fun resizeAndCropBitmap(bitmap: Bitmap): Bitmap {
+        val dimension = minOf(bitmap.width, bitmap.height)
+        val croppedBitmap = Bitmap.createBitmap(bitmap, (bitmap.width - dimension) / 2, (bitmap.height - dimension) / 2, dimension, dimension)
+        return Bitmap.createScaledBitmap(croppedBitmap, 299, 299, true)
+    }
+
     private fun sendImageToApi(base64Image: String) {
         val apiService = ApiConfig().apiService
 
@@ -126,6 +142,9 @@ class DetailPlantActivity : AppCompatActivity() {
                 // For example, you can log the response
                 Log.d("API Response", response.toString())
                 withContext(Dispatchers.Main) {
+                    // Assuming response contains a field `predictedClass` with the plant information
+                    val plantInfo = response.predictedClass
+                    plantInformation.text = plantInfo
                     Toast.makeText(applicationContext, "API Response: $response", Toast.LENGTH_SHORT).show()
                 }
             } catch (e: Exception) {
@@ -137,5 +156,4 @@ class DetailPlantActivity : AppCompatActivity() {
             }
         }
     }
-
 }

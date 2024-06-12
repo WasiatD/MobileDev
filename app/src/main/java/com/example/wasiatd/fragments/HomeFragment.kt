@@ -12,6 +12,7 @@ import com.example.wasiatd.data.local.ItemDataDashboard
 import DashboardAdapter
 import android.util.Log
 import android.widget.ProgressBar
+import android.widget.TextView
 import com.example.wasiatd.data.remote.config.ApiConfig
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
