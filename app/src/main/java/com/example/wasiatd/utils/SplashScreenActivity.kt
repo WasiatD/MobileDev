@@ -3,14 +3,13 @@ package com.example.wasiatd.utils
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.wasiatd.MainActivity
 import com.example.wasiatd.R
 import com.example.wasiatd.dashboard.dashboardMainActivity.dashboardMainActivity
+import com.example.wasiatd.ui.login.LoginActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import com.example.wasiatd.utils.RegisterActivity
 
 class SplashScreenActivity : AppCompatActivity() {
     private val splashTimeOut: Long = 3000

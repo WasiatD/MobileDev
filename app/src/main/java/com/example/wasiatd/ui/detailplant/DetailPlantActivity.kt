@@ -1,4 +1,4 @@
-package com.example.wasiatd
+package com.example.wasiatd.ui.detailplant
 
 import android.content.Intent
 import android.graphics.*
@@ -16,12 +16,25 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.bumptech.glide.Glide
+import com.example.wasiatd.ui.diseasedetail.DiseaseDetailActivity
+import com.example.wasiatd.R
+import com.example.wasiatd.dashboard.dashboardMainActivity.dashboardMainActivity
 import com.example.wasiatd.data.remote.config.ApiConfig
+import com.example.wasiatd.data.remote.responses.LoginResponse
+import com.example.wasiatd.data.remote.responses.PredictResponse
+import com.example.wasiatd.databinding.ActivityDetailPlantBinding
+import com.example.wasiatd.ui.login.LoginActivity
+import com.example.wasiatd.ui.login.LoginViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.io.ByteArrayOutputStream
 
 class DetailPlantActivity : AppCompatActivity() {
@@ -150,7 +163,7 @@ class DetailPlantActivity : AppCompatActivity() {
     }
 
     private fun sendImageToApi(base64Image: String) {
-       val apiService = ApiConfig.getApiService()
+        val apiService = ApiConfig.getApiService()
 
 
         GlobalScope.launch(Dispatchers.IO) {

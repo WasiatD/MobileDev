@@ -1,4 +1,4 @@
-package com.example.wasiatd
+package com.example.wasiatd.ui.addplant
 
 import android.net.Uri
 import android.os.Bundle

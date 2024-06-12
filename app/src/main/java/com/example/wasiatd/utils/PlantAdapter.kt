@@ -6,7 +6,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.wasiatd.DetailPlantActivity
+import com.example.wasiatd.ui.detailplant.DetailPlantActivity
 import com.example.wasiatd.R
 import com.example.wasiatd.data.local.Plant
 

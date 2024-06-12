@@ -1,4 +1,4 @@
-package com.example.wasiatd.utils
+package com.example.wasiatd.ui.register
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.wasiatd.databinding.ActivityRegisterBinding
+import com.example.wasiatd.ui.login.LoginActivity
 
 class RegisterActivity : AppCompatActivity() {
 

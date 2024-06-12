@@ -1,4 +1,4 @@
-package com.example.wasiatd.utils
+package com.example.wasiatd.ui.login
 
 import android.content.Intent
 import android.content.SharedPreferences
@@ -10,7 +10,7 @@ import com.example.wasiatd.R
 import com.example.wasiatd.dashboard.dashboardMainActivity.dashboardMainActivity
 import com.example.wasiatd.data.remote.config.ApiConfig
 import com.example.wasiatd.databinding.ActivityLoginBinding
-import org.json.JSONObject
+import com.example.wasiatd.ui.register.RegisterActivity
 
 class LoginActivity : AppCompatActivity() {
 

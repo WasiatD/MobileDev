@@ -29,6 +29,12 @@ interface ApiServices {
     @GET(constants.GET_DATA_BY_ID)
     suspend fun getDataById(@Query("id") id: String): IsiItem
 
+//    @FormUrlEncoded
+//    @POST("/predict")
+//    fun predictDisease(
+//        @Field("base64_encoded") base64_encoded: String,
+//    ): Call<PredictResponse>
+
     @FormUrlEncoded
     @POST("/register")
     fun registerUser(

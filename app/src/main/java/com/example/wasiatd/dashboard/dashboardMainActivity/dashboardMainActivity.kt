@@ -4,7 +4,6 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MenuItem
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
@@ -14,7 +13,7 @@ import com.example.wasiatd.fragments.HomeFragment
 import com.example.wasiatd.fragments.PlantFragment
 import com.example.wasiatd.fragments.TasksFragment
 import com.example.wasiatd.fragments.SearchFragment
-import com.example.wasiatd.utils.LoginActivity
+import com.example.wasiatd.ui.login.LoginActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class dashboardMainActivity : AppCompatActivity() {

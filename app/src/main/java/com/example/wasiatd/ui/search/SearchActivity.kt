@@ -1,10 +1,11 @@
-package com.example.wasiatd
+package com.example.wasiatd.ui.search
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.wasiatd.R
 
 class SearchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
