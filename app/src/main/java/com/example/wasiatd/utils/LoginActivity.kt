@@ -3,6 +3,7 @@ package com.example.wasiatd.utils
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -21,11 +22,11 @@ class LoginActivity : AppCompatActivity() {
             insets
         }
 
-        val signUpButton = findViewById<Button>(R.id.signUpButton)
+        val signUpButton:TextView = findViewById<Button>(R.id.loginLink)
         signUpButton.setOnClickListener {
-            val intent = Intent(this, dashboardMainActivity::class.java)
+            val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
-            finish() // Optionally finish the RegisterActivity so user can't go back to it
+            finish()
         }
     }
 }

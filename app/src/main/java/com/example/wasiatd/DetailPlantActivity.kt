@@ -43,7 +43,6 @@ class DetailPlantActivity : AppCompatActivity() {
         }
 
         plantInformation = findViewById(R.id.plantDiseaseInformation)
-
         val plantName = intent.getStringExtra("plant_name")
         val plantImageUri = intent.getStringExtra("plant_image_uri")?.let { Uri.parse(it) }
 
@@ -52,12 +51,18 @@ class DetailPlantActivity : AppCompatActivity() {
         val cameraButton: Button = findViewById(R.id.button_open_camera)
         val galleryButton: Button = findViewById(R.id.button_open_gallery)
         val decodeButton: Button = findViewById(R.id.button_decode)
+        val detailButton: TextView = findViewById(R.id.detailLabel)
 
         plantInformation.text = "Lorem Ipsum"
 
         plantNameTextView.text = plantName
         plantImageUri?.let {
             Glide.with(this).load(it).into(plantImageView)
+        }
+
+        detailButton.setOnClickListener {
+            val intent = Intent(this, DiseaseDetailActivity::class.java)
+            startActivity(intent)
         }
 
         var currentBitmap: Bitmap? = null

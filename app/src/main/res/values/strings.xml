@@ -55,9 +55,9 @@
     <string name="plantDisease">Tomato Leaf Curl Virus</string>
     <string name="plantDiseaseDescriptionLabel">Plant Disease Description</string>
     <string name="plantDiseaseDescription">Tomato leaf curl virus is a DNA virus from the genus Begomovirus and the family Geminiviridae. </string>
-
     <string name="addTask">Add Task</string>
     <string name="taskLabel">Here is your to-do-list!</string>
+    <string name="detailLabel">View Disease Detail</string>
 
     <string name="taskCreate">15 Minutes Ago</string>
     <string name="taskTitle">Watering the plants</string>

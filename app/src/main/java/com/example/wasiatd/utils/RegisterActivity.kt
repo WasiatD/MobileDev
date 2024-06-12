@@ -3,6 +3,7 @@ package com.example.wasiatd.utils
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -17,8 +18,8 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_register)
 
         // Set OnClickListener for the sign-up button
-        val signUpButton = findViewById<Button>(R.id.signUpButton)
-        signUpButton.setOnClickListener {
+        val signInButton: TextView = findViewById<Button>(R.id.subtitleText)
+        signInButton.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish() // Optionally finish the RegisterActivity so user can't go back to it
