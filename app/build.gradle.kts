@@ -17,7 +17,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField("String", "BASE_URL", "\"https://fastapi-wasiatd-cfvju4hotq-et.a.run.app/\"")
+        buildConfigField("String", "BASE_URL", "\"https://api-wasiatd-cfvju4hotq-et.a.run.app/\"")
     }
 
     buildTypes {
@@ -62,6 +62,8 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.16.0")
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation ("com.squareup.okhttp3:logging-interceptor:4.9.3")
+
 
 
     implementation(libs.androidx.core.ktx)

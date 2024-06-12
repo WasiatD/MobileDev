@@ -19,7 +19,7 @@ interface ApiServices {
     suspend fun getDiseaseInfo(@Query("disease") disease: String): DiseaseInfoResponse
 
     @POST(constants.DISEASE_PREDICTION)
-    suspend fun predictDisease(@Body base64_encoded: String): PredictResponse
+    suspend fun predictDisease(@Query("base64_encoded")base64_encoded: String): PredictResponse
 
     @GET(constants.GET_DATA_BY_ID)
     suspend fun getDataById(@Query("id") id: String): IsiItem

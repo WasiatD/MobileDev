@@ -146,6 +146,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
+
                     <!-- TextView at the top of the RecyclerView -->
                     <TextView
                         android:layout_width="match_parent"
@@ -156,6 +157,14 @@
                         android:textColor="#FF0000"
                         android:textSize="18sp"
                         android:textStyle="bold" />
+
+                    <ProgressBar
+                        android:id="@+id/progressBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:visibility="gone"
+                        />
 
 
                     <!-- RecyclerView -->
