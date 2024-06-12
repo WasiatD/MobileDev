@@ -2,6 +2,7 @@ package com.example.wasiatd.data.remote.config
 
 import com.example.wasiatd.data.remote.constants
 import okhttp3.OkHttpClient
+import okhttp3.Protocol
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -14,6 +15,9 @@ class ApiConfig {
 
     private val httpClient = OkHttpClient.Builder()
         .addInterceptor(loggingInterceptor)
+        .also {
+            it.protocols(listOf(Protocol.HTTP_1_1))
+        }
         .build()
 
     private val retrofit by lazy {

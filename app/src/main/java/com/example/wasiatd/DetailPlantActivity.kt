@@ -42,7 +42,7 @@ class DetailPlantActivity : AppCompatActivity() {
             finish() // Handle back navigation when the back button is pressed
         }
 
-        plantInformation = findViewById(R.id.plantInformation)
+        plantInformation = findViewById(R.id.plantDiseaseInformation)
 
         val plantName = intent.getStringExtra("plant_name")
         val plantImageUri = intent.getStringExtra("plant_image_uri")?.let { Uri.parse(it) }
