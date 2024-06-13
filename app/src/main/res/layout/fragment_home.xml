@@ -166,7 +166,6 @@
                         android:visibility="gone"
                         />
 
-
                     <!-- RecyclerView -->
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recyclerView"

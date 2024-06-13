@@ -62,7 +62,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/inter_bold"
-                        android:text="Hi, Udin!"
+                        android:text="@string/hello"
                         android:textColor="@color/sage_green"
                         android:textSize="36sp" />
 
@@ -71,7 +71,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/inter"
-                        android:text="Don't forget to keep you plant healthy"
+                        android:text="@string/reminderText"
                         android:textColor="@color/sage_green"
                         android:textSize="12sp" />
 
@@ -99,41 +99,39 @@
                         android:textSize="16sp"/>
 
                     <TextView
-                        android:id="@+id/latinLabel"
+                        android:id="@+id/plantDescriptionLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:fontFamily="@font/inter_medium"
-                        android:text="@string/latinLabel"
+                        android:text="@string/plantDescription"
                         android:textColor="@android:color/black"
                         android:textSize="12sp"/>
 
                     <EditText
-                        android:id="@+id/latin_name"
-                        android:layout_width="match_parent"
+                        android:id="@+id/plant_description"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:background="@drawable/edit_text_background_white"
-                        android:enabled="false"
                         android:fontFamily="@font/inter"
-                        android:inputType="textEmailAddress"
                         android:padding="12dp"
-                        android:text="@string/plantLatinName"
+                        android:text="@string/plantDescriptionText"
                         android:textColor="@color/black"
                         android:textSize="16sp"/>
 
                     <TextView
-                        android:id="@+id/plantedLabel"
+                        android:id="@+id/location"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:fontFamily="@font/inter_medium"
-                        android:text="@string/dateLabel"
+                        android:text="@string/location"
                         android:textColor="@android:color/black"
                         android:textSize="12sp"/>
 
                     <EditText
-                        android:id="@+id/planted_date"
+                        android:id="@+id/plant_location"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
@@ -142,22 +140,22 @@
                         android:fontFamily="@font/inter"
                         android:inputType="date"
                         android:padding="12dp"
-                        android:text="@string/plantedDate"
+                        android:text="@string/plantLocation"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/isWateringLabel"
+                        android:id="@+id/phLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:fontFamily="@font/inter_medium"
-                        android:text="@string/isWateringLabel"
+                        android:text="@string/phLabel"
                         android:textColor="@android:color/black"
                         android:textSize="12sp" />
 
                     <EditText
-                        android:id="@+id/isWatering"
+                        android:id="@+id/plant_ph"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
@@ -166,31 +164,7 @@
                         android:fontFamily="@font/inter"
                         android:inputType="date"
                         android:padding="12dp"
-                        android:text="@string/isWatering"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/soilLabel"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:fontFamily="@font/inter_medium"
-                        android:text="@string/soilLabel"
-                        android:textColor="@android:color/black"
-                        android:textSize="12sp" />
-
-                    <EditText
-                        android:id="@+id/soil"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:background="@drawable/edit_text_background_white"
-                        android:enabled="false"
-                        android:fontFamily="@font/inter"
-                        android:inputType="date"
-                        android:padding="12dp"
-                        android:text="@string/soil"
+                        android:text="@string/ph"
                         android:textColor="@color/black"
                         android:textSize="16sp"/>
 
@@ -205,7 +179,7 @@
                         android:textSize="12sp"/>
 
                     <EditText
-                        android:id="@+id/temperature"
+                        android:id="@+id/plant_temperature"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
@@ -219,17 +193,17 @@
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/timeScheduleLabel"
+                        android:id="@+id/humidity_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:fontFamily="@font/inter_medium"
-                        android:text="@string/timeScheduleLabel"
+                        android:text="@string/humidityLabel"
                         android:textColor="@android:color/black"
                         android:textSize="12sp"/>
 
                     <EditText
-                        android:id="@+id/timeSchedule"
+                        android:id="@+id/plant_humidity"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
@@ -238,10 +212,38 @@
                         android:fontFamily="@font/inter"
                         android:inputType="date"
                         android:padding="12dp"
-                        android:text="@string/timeSchedule"
+                        android:text="@string/humidity"
                         android:textColor="@color/black"
                         android:textSize="16sp"/>
 
+                    <Button
+                        android:id="@+id/button_save"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/sage_green"
+                        android:layout_marginTop="16dp"
+                        android:padding="12dp"
+                        android:text="@string/save"
+                        android:textColor="@android:color/white" />
+
+                    <TextView
+                        android:id="@+id/analyzeLabel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_bold"
+                        android:text="@string/analyzeText"
+                        android:textColor="@color/sage_green"
+                        android:layout_marginTop="12dp"
+                        android:textSize="24sp" />
+
+                    <TextView
+                        android:id="@+id/analyzeParagraph"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter"
+                        android:text="@string/analyzeParagraph"
+                        android:textColor="@color/sage_green"
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/plantDiseaseLabel"

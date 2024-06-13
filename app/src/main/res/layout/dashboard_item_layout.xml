@@ -14,10 +14,10 @@
         android:padding="8dp">
 
         <TextView
-            android:id="@+id/plant_name"
+            android:id="@+id/dashboardPlantName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tomato Pot #1"
+            android:text="@string/plantName"
             android:textStyle="bold"
             android:textSize="18sp"
             android:paddingBottom="4dp"/>
@@ -28,10 +28,10 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/status"
+                android:id="@+id/dashboardPlantLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Need water"
+                android:text="@string/plantLocation"
                 android:textSize="14sp"
                 android:paddingBottom="4dp"/>
 
@@ -41,10 +41,10 @@
                 android:layout_weight="1" />
 
             <TextView
-                android:id="@+id/time"
+                android:id="@+id/dashboardHumidity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="15 Minutes ago"
+                android:text="@string/humidity"
                 android:textSize="12sp"
                 android:paddingBottom="4dp"/>
 

@@ -13,13 +13,22 @@ data class GetIotResponse(
 
 @Parcelize
 data class IsiItem(
+	@field:SerializedName("ph")
+	val ph: String,
+
+	@field:SerializedName("name")
+	val name: String,
+
+	@field:SerializedName("suhu")
+	val suhu: String,
+
+	@field:SerializedName("location")
+	val location: String,
 
 	@field:SerializedName("id")
-	val id: String? = null,
+	val id: String,
 
-	@field:SerializedName("Lokasi")
-	val lokasi: String? = null,
+	@field:SerializedName("kelembapan")
+	val kelembapan: String
 
-	@field:SerializedName("Tanaman")
-	val Tanaman: String? = null
 ) : Parcelable

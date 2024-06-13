@@ -57,10 +57,17 @@ class DetailPlantActivity : AppCompatActivity() {
 
         plantInformation = findViewById(R.id.plantDiseaseInformation)
         val plantName = intent.getStringExtra("plant_name")
-        val plantImageUri = intent.getStringExtra("plant_image_uri")?.let { Uri.parse(it) }
+        val plantTemperature = intent.getStringExtra("plant_suhu")
+        val plantLocation = intent.getStringExtra("plant_location")
+        val plantHumidity = intent.getStringExtra("plant_humidity")
+        val plantPh = intent.getStringExtra("plant_ph")
 
         val plantNameTextView: TextView = findViewById(R.id.plant_name)
-        val plantImageView: ImageView = findViewById(R.id.plant_image)
+        val plantTemperatureTextView: TextView = findViewById(R.id.plant_temperature)
+        val plantLocationTextView: TextView = findViewById(R.id.plant_location)
+        val plantHumidityTextView: TextView = findViewById(R.id.plant_humidity)
+        val plantPhTextView: TextView = findViewById(R.id.plant_ph)
+
         val cameraButton: Button = findViewById(R.id.button_open_camera)
         val galleryButton: Button = findViewById(R.id.button_open_gallery)
         val decodeButton: Button = findViewById(R.id.button_decode)
@@ -69,9 +76,10 @@ class DetailPlantActivity : AppCompatActivity() {
         plantInformation.text = "Lorem Ipsum"
 
         plantNameTextView.text = plantName
-        plantImageUri?.let {
-            Glide.with(this).load(it).into(plantImageView)
-        }
+        plantTemperatureTextView.text = plantTemperature
+        plantLocationTextView.text = plantLocation
+        plantHumidityTextView.text = plantHumidity
+        plantPhTextView.text = plantPh
 
         detailButton.setOnClickListener {
             val intent = Intent(this, DiseaseDetailActivity::class.java)
@@ -120,7 +128,7 @@ class DetailPlantActivity : AppCompatActivity() {
             base64Image?.let { encodedImage ->
                 sendImageToApi(encodedImage)
                 val decodedBitmap = base64ToBitmap(encodedImage)
-                plantImageView.setImageBitmap(decodedBitmap)
+//                plantImageView.setImageBitmap(decodedBitmap)
             }
         }
     }

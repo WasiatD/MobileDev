@@ -32,7 +32,6 @@
     <string name="dateLabel">Planted Date</string>
     <string name="plantInfoLabel">Plant Information</string>
     <string name="isWateringLabel">Has it been watered?</string>
-    <string name="soilLabel">Soil</string>
     <string name="timeScheduleLabel">Time Schedule</string>
     <string name="temperatureLabel">Temperature</string>
     <string name="plantName">Tomato</string>\
@@ -44,7 +43,7 @@
     <string name="analyzeLabel">Analyze Plant Disease</string>
     <string name="plantedDate">20/02/2024</string>
     <string name="isWatering">No</string>
-    <string name="soil">2234</string>
+    <string name="ph">16</string>
     <string name="timeSchedule">21:48</string>
     <string name="temperature">25</string>
     <string name="search">Search</string>
@@ -59,7 +58,13 @@
     <string name="taskLabel">Here is your to-do-list!</string>
     <string name="detailLabel">View Disease Detail</string>
     <string name="plantLocation">In Front of Chair</string>
-
+    <string name="analyzeText">Check your plan disease!</string>
+    <string name="analyzeParagraph">Healthy plants make your life great!</string>
+    <string name="humidity">Cold</string>
+    <string name="plantDescription">Plant Description</string>
+    <string name="plantDescriptionText">Tomato is a plant. The tomato is the edible berry of the plant Solanum lycopersicum,
+        commonly known as a tomato plant. </string>
+    <string name="phLabel">PH</string>
     <string name="taskCreate">15 Minutes Ago</string>
     <string name="taskTitle">Watering the plants</string>
     <string name="taskDescription">Lorem Ipsum is simply dummy text of the printing
@@ -68,6 +73,11 @@
     </string>
     <string name="invalidCredential">Invalid Credential, please try again!</string>
     <string name="systemFailure">System Error! Please Try Again!</string>
+    <string name="hello">Hello!</string>
+    <string name="reminderText">Don\'t forget to keep you plant healthy!</string>
+    <string name="location">Location</string>
+    <string name="humidityLabel">Humidity</string>
+    <string name="plantHumidity">Cold</string>
 
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>

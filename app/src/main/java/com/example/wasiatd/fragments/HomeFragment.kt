@@ -40,17 +40,13 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
         progressBar = view.findViewById(R.id.progressBar)
         recyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(context)
 
-        // Initialize Retrofit and ApiService
         val apiService = ApiConfig.getApiService()
-
-        // Create an empty list to hold ItemDataDashboard objects
         val itemDataDashboardList = mutableListOf<ItemDataDashboard>()
 
         GlobalScope.launch(Dispatchers.IO) {
@@ -64,21 +60,19 @@ class HomeFragment : Fragment() {
                 val dataFromApi = response.isi
                 withContext(Dispatchers.Main) {
                     dataFromApi?.let { isiItems ->
-                        // Iterate through each IsiItem object
                         for (isiItem in isiItems) {
-                            // Access properties of isiItem
                             val id = isiItem?.id
-                            val lokasi = isiItem?.lokasi
-                            val tanaman = isiItem?.Tanaman
+                            val name = isiItem?.name
+                            val location = isiItem?.location
+                            val suhu = isiItem?.suhu
+                            val humidity = isiItem?.kelembapan
+                            val ph = isiItem?.ph
 
-                            // Create an ItemDataDashboard object using selected properties from IsiItem
-                            val itemDataDashboard = ItemDataDashboard("$id", "$lokasi", "$tanaman")
+                            val itemDataDashboard = ItemDataDashboard("$id", "$name", "$location", "$suhu", "$humidity", "$ph")
 
-                            // Add the ItemDataDashboard object to the list
                             itemDataDashboardList.add(itemDataDashboard)
                         }
 
-                        // Create adapter with the list of ItemDataDashboard objects and set it to RecyclerView
                         val adapter = DashboardAdapter(itemDataDashboardList)
                         recyclerView.adapter = adapter
 
@@ -98,7 +92,6 @@ class HomeFragment : Fragment() {
 
         return view
     }
-
 
     companion object {
         @JvmStatic

@@ -13,7 +13,7 @@
         android:padding="8dp">
 
         <TextView
-            android:id="@+id/plantName"
+            android:id="@+id/listPlantName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/plantName"
@@ -23,7 +23,7 @@
             android:textSize="20sp"/>
 
         <TextView
-            android:id="@+id/plantLocation"
+            android:id="@+id/listPlanLocation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4sp"
@@ -32,7 +32,7 @@
             android:textSize="12sp"/>
 
         <TextView
-            android:id="@+id/plantDescription"
+            android:id="@+id/listPlantHumidity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/inter"

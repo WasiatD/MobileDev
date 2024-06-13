@@ -9,9 +9,9 @@ import com.example.wasiatd.data.local.ItemDataDashboard
 class DashboardAdapter(private val plantList: List<ItemDataDashboard>) : RecyclerView.Adapter<DashboardAdapter.PlantViewHolder>() {
 
     inner class PlantViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val plantName: TextView = itemView.findViewById(R.id.plant_name)
-        val status: TextView = itemView.findViewById(R.id.status)
-        val time: TextView = itemView.findViewById(R.id.time)
+        val plantName: TextView = itemView.findViewById(R.id.dashboardPlantName)
+        val plantLocation: TextView = itemView.findViewById(R.id.dashboardPlantLocation)
+        val plantHumidity: TextView = itemView.findViewById(R.id.dashboardHumidity)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlantViewHolder {
@@ -23,8 +23,8 @@ class DashboardAdapter(private val plantList: List<ItemDataDashboard>) : Recycle
         val currentItem = plantList[position]
 
         holder.plantName.text = currentItem.name
-        holder.status.text = currentItem.status
-        holder.time.text = currentItem.time
+        holder.plantLocation.text = currentItem.location
+        holder.plantHumidity.text = currentItem.humidity
     }
 
     override fun getItemCount() = plantList.size

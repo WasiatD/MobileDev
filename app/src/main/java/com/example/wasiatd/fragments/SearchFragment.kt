@@ -39,26 +39,7 @@ class SearchFragment : Fragment() {
 
         // Create dummy data
         val dummyData = listOf(
-            ItemDataDashboard("com.example.wasiatd.data.local.Plant 1", "Healthy", "10:00 AM"),
-            ItemDataDashboard("com.example.wasiatd.data.local.Plant 2", "Needs Water", "11:00 AM"),
-            ItemDataDashboard("com.example.wasiatd.data.local.Plant 3", "Fertilized", "12:00 PM"),
-            ItemDataDashboard("com.example.wasiatd.data.local.Plant 4", "Healthy", "1:00 PM"),
-            ItemDataDashboard("com.example.wasiatd.data.local.Plant 5", "Needs Water", "2:00 PM"),
-            ItemDataDashboard("com.example.wasiatd.data.local.Plant 6", "Fertilized", "3:00 PM"),
-            ItemDataDashboard("com.example.wasiatd.data.local.Plant 7", "Healthy", "4:00 PM"),
-            ItemDataDashboard("com.example.wasiatd.data.local.Plant 8", "Needs Water", "5:00 PM"),
-            ItemDataDashboard("com.example.wasiatd.data.local.Plant 9", "Fertilized", "6:00 PM"),
-            ItemDataDashboard("com.example.wasiatd.data.local.Plant 10", "Healthy", "7:00 PM"),
-            ItemDataDashboard("com.example.wasiatd.data.local.Plant 11", "Needs Water", "8:00 PM"),
-            ItemDataDashboard("com.example.wasiatd.data.local.Plant 12", "Fertilized", "9:00 PM"),
-            ItemDataDashboard("com.example.wasiatd.data.local.Plant 13", "Healthy", "10:00 PM"),
-            ItemDataDashboard("com.example.wasiatd.data.local.Plant 14", "Needs Water", "11:00 PM"),
-            ItemDataDashboard("com.example.wasiatd.data.local.Plant 15", "Fertilized", "12:00 AM"),
-            ItemDataDashboard("com.example.wasiatd.data.local.Plant 16", "Healthy", "1:00 AM"),
-            ItemDataDashboard("com.example.wasiatd.data.local.Plant 17", "Needs Water", "2:00 AM"),
-            ItemDataDashboard("com.example.wasiatd.data.local.Plant 18", "Fertilized", "3:00 AM"),
-            ItemDataDashboard("com.example.wasiatd.data.local.Plant 19", "Healthy", "4:00 AM"),
-            ItemDataDashboard("com.example.wasiatd.data.local.Plant 20", "Needs Water", "5:00 AM")
+            ItemDataDashboard("1", "Tomat", "In Front of Red House", "80%", "20%", "30%"),
         )
 
         val adapter = DashboardAdapter(dummyData)
