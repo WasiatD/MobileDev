@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.wasiatd.ui.addplant.AddPlantActivity
 import com.example.wasiatd.R
 import android.widget.Button
+import androidx.recyclerview.widget.LinearLayoutManager
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -38,45 +39,37 @@ class PlantFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_plant, container, false)
+        override fun onCreateView(
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
+        ): View? {
+            val view = inflater.inflate(R.layout.fragment_plant, container, false)
 
-        val recyclerView: RecyclerView = view.findViewById(R.id.recyclerView)
-        recyclerView.layoutManager = GridLayoutManager(context, 2) // 2 columns
-        recyclerView.adapter = PlantAdapter(getPlants()) // Replace with your adapter
+            val recyclerView: RecyclerView? = view.findViewById(R.id.recyclerView)
+            recyclerView?.layoutManager = LinearLayoutManager(context)
 
-        val btnAddPlant: Button = view.findViewById(R.id.btnAddPlant)
-        btnAddPlant.setOnClickListener {
-            val intent = Intent(activity, AddPlantActivity::class.java)
-            startActivity(intent)
-        }
+            val adapter = PlantAdapter(getPlants())
+            recyclerView?.adapter = adapter
 
-        return view
+            return view
     }
 
     private fun getPlants(): List<Plant> {
-        // Your logic to get the list of plants
         return listOf(
             Plant(
                 name = "Tomato",
-                places = "Greenhouse",
-                plantedDate = "2023-02-10",
-                imageUri = Uri.parse("https://example.com/images/tomato.jpg")
+                location = "Greenhouse",
+                description = "Loren Ipsum"
             ),
             Plant(
                 name = "Potato",
-                places = "Field",
-                plantedDate = "2023-03-15",
-                imageUri = Uri.parse("https://example.com/images/potato.jpg")
+                location = "Field",
+                description = "Loren Ipsum"
             ),
             Plant(
                 name = "Strawberry",
-                places = "Garden",
-                plantedDate = "2023-04-20",
-                imageUri = Uri.parse("https://example.com/images/strawberry.jpg")
+                location = "Garden",
+                description = "Loren Ipsum"
             )
         )
     }

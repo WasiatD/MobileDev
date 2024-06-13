@@ -58,6 +58,7 @@
     <string name="addTask">Add Task</string>
     <string name="taskLabel">Here is your to-do-list!</string>
     <string name="detailLabel">View Disease Detail</string>
+    <string name="plantLocation">In Front of Chair</string>
 
     <string name="taskCreate">15 Minutes Ago</string>
     <string name="taskTitle">Watering the plants</string>
