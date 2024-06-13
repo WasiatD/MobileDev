@@ -77,6 +77,8 @@
     <string name="reminderText">Don\'t forget to keep you plant healthy!</string>
     <string name="location">Location</string>
     <string name="humidityLabel">Humidity</string>
+    <string name="humidityLabelWithAnnote">Humidity:</string>
+    <string name="locationLabelWithAnnote">Location:</string>
     <string name="plantHumidity">Cold</string>
 
     <!-- Strings used for fragments for navigation -->
