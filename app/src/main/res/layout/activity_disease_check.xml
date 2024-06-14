@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".ui.diseasecheck.DiseaseCheckActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="MissingConstraints">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_shape_toolbar"
+                app:navigationIcon="@drawable/baseline_arrow_back_24"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:title="Detail Plant"
+                app:titleTextColor="@color/green_stroke">
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/plant_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:contentDescription="@string/registerImageDescription"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/gif_dashboard"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:id="@+id/greetingText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_bold"
+                        android:text="@string/hello"
+                        android:textColor="@color/sage_green"
+                        android:textSize="36sp" />
+
+                    <TextView
+                        android:id="@+id/reminderText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter"
+                        android:text="@string/reminderText"
+                        android:textColor="@color/sage_green"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/analyzeImageLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="@string/analyzeLabel"
+                        android:textColor="@android:color/black"
+                        android:textSize="12sp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/button_open_camera"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:backgroundTint="@color/sage_green"
+                                android:padding="12dp"
+                                android:text="@string/camera"
+                                android:textColor="@android:color/white" />
+
+                            <Button
+                                android:id="@+id/button_open_gallery"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_weight="1"
+                                android:backgroundTint="@color/sage_green"
+                                android:padding="12dp"
+                                android:text="@string/gallery"
+                                android:textColor="@android:color/white" />
+                        </LinearLayout>
+
+                        <Button
+                            android:id="@+id/button_decode"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/sage_green"
+                            android:padding="12dp"
+                            android:text="@string/analyze"
+                            android:textColor="@android:color/white" />
+
+
+                        <TextView
+                            android:id="@+id/plantDiseaseLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:fontFamily="@font/inter_medium"
+                            android:text="@string/plantDiseaseLabel"
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp"/>
+
+                        <EditText
+                            android:id="@+id/diseaseCheckDiseaseInformation"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:background="@drawable/edit_text_background_white"
+                            android:fontFamily="@font/inter"
+                            android:padding="12dp"
+                            android:text="@string/plantDiseaseInformation"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            tools:ignore="Autofill" />
+
+                        <TextView
+                            android:id="@+id/detailLabel"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:fontFamily="@font/inter_medium"
+                            android:text="@string/detailLabel"
+                            android:textColor="@color/blue"
+                            android:gravity="center"
+                            android:textSize="12sp"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

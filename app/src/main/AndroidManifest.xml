@@ -24,6 +24,9 @@
         android:theme="@style/Theme.WasiatD"
         tools:targetApi="31">
         <activity
+            android:name=".ui.diseasecheck.DiseaseCheckActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.diseasedetail.DiseaseDetailActivity"
             android:exported="false" />
         <activity
