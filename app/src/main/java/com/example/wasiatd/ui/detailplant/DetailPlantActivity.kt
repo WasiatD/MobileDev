@@ -22,6 +22,7 @@ import com.bumptech.glide.Glide
 import com.example.wasiatd.ui.diseasedetail.DiseaseDetailActivity
 import com.example.wasiatd.R
 import com.example.wasiatd.dashboard.dashboardMainActivity.dashboardMainActivity
+import com.example.wasiatd.data.remote.PredictRequest
 import com.example.wasiatd.data.remote.config.ApiConfig
 import com.example.wasiatd.data.remote.responses.LoginResponse
 import com.example.wasiatd.data.remote.responses.PredictResponse
@@ -177,7 +178,9 @@ class DetailPlantActivity : AppCompatActivity() {
         GlobalScope.launch(Dispatchers.IO) {
             try {
                 // Call the predictDisease endpoint with the base64 encoded image
-                val response = apiService.predictDisease(base64Image)
+                val predictRequest = PredictRequest(base64Image)
+                val response = apiService.predictDisease(predictRequest)
+
                 // Handle the response accordingly
                 // For example, you can log the response
                 Log.d("API Response", response.toString())

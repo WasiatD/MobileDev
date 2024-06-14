@@ -1,5 +1,6 @@
 package com.example.wasiatd.data.remote.config
 
+import com.example.wasiatd.data.remote.PredictRequest
 import com.example.wasiatd.data.remote.constants
 import com.example.wasiatd.data.remote.responses.DiseaseInfoResponse
 import com.example.wasiatd.data.remote.responses.GetIotResponse
@@ -24,7 +25,7 @@ interface ApiServices {
     suspend fun getDiseaseInfo(@Query("disease") disease: String): DiseaseInfoResponse
 
     @POST(constants.DISEASE_PREDICTION)
-    suspend fun predictDisease(@Query("base64_encoded")base64_encoded: String): PredictResponse
+    suspend fun predictDisease(@Body requestBody: PredictRequest): PredictResponse
 
     @GET(constants.GET_DATA_BY_ID)
     suspend fun getDataById(@Query("id") id: String): IsiItem
