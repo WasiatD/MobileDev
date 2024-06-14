@@ -7,6 +7,9 @@ data class RegisterResponse(
 	@field:SerializedName("expiresIn")
 	val expiresIn: String,
 
+	@field:SerializedName("flag")
+	val flag: String,
+
 	@field:SerializedName("kind")
 	val kind: String,
 

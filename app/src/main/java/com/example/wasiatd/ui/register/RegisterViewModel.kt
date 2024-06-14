@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.wasiatd.data.remote.config.ApiConfig
 import com.example.wasiatd.data.remote.responses.RegisterResponse
+import com.example.wasiatd.ui.login.LoginViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -33,6 +34,8 @@ class RegisterViewModel : ViewModel() {
                 val responseBody = response.body()
                 if(responseBody != null) {
                     _register.value = responseBody
+                } else {
+                _errorMessage.value = LoginViewModel.INVALID_CREDENTIALS
                 }
             }
 
@@ -43,6 +46,10 @@ class RegisterViewModel : ViewModel() {
             }
 
         })
+    }
+
+    fun clearErrorMessage() {
+        _errorMessage.value = null
     }
 
     companion object {
