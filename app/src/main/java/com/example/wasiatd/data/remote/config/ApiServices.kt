@@ -4,6 +4,7 @@ import com.example.wasiatd.data.remote.PredictRequest
 import com.example.wasiatd.data.remote.constants
 import com.example.wasiatd.data.remote.responses.DetailDiseaseResponse
 import com.example.wasiatd.data.remote.responses.DiseaseInfoResponse
+import com.example.wasiatd.data.remote.responses.GetDetailIotResponse
 import com.example.wasiatd.data.remote.responses.GetIotResponse
 import com.example.wasiatd.data.remote.responses.IsiItem
 import com.example.wasiatd.data.remote.responses.LoginResponse
@@ -23,6 +24,9 @@ interface ApiServices {
     @GET(constants.GET_IOT)
     suspend fun getIot(): GetIotResponse
 
+//    @GET(constants.GET_DETAIL_IOT)
+//    suspend fun getIotDetail(): GetDetailIotResponse
+
 //    @GET(constants.GET_DISEASE_INFO)
 //    suspend fun getDiseaseInfo(@Query("disease") disease: String): DiseaseInfoResponse
 //
@@ -35,8 +39,11 @@ interface ApiServices {
     @POST(constants.DISEASE_PREDICTION)
     suspend fun predictDisease(@Body requestBody: PredictRequest): PredictResponse
 
-    @GET(constants.GET_DATA_BY_ID)
-    suspend fun getDataById(@Query("id") id: String): IsiItem
+//    @GET(constants.GET_DATA_BY_ID)
+//    suspend fun getDataById(@Body requestBody: PredictRequest): IsiItem
+
+    @GET("getDataById/{IoT_ID}")
+    fun getDetailIotResponse(@Path("IoT_ID") id: String): Call<GetDetailIotResponse>
 
 //    @FormUrlEncoded
 //    @POST("/predict")

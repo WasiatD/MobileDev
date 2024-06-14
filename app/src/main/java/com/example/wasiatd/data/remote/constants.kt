@@ -10,5 +10,6 @@ object constants {
     const val GET_DATA_BY_ID = "getDataById"
     const val DISEASE_PREDICTION = "predict"
     const val GET_DISEASE_INFO = "disease-info"
+    const val GET_DETAIL_IOT = "getDetailIot"
 
 }
