@@ -62,7 +62,7 @@ class HomeFragment : Fragment() {
                     dataFromApi?.let { isiItems ->
                         for (isiItem in isiItems) {
                             val id = isiItem?.id
-                            val name = isiItem?.name
+                            val name = isiItem?.nama
                             val location = isiItem?.location
                             val suhu = isiItem?.suhu
                             val humidity = isiItem?.kelembapan

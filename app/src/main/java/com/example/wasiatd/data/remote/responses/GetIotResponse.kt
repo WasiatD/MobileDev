@@ -17,7 +17,7 @@ data class IsiItem(
 	val ph: String,
 
 	@field:SerializedName("name")
-	val name: String,
+	val nama: String,
 
 	@field:SerializedName("suhu")
 	val suhu: String,

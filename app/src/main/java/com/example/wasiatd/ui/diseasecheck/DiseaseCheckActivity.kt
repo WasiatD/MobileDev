@@ -33,32 +33,20 @@ class DiseaseCheckActivity : AppCompatActivity() {
     private lateinit var cameraLauncher: ActivityResultLauncher<Intent>
     private lateinit var galleryLauncher: ActivityResultLauncher<Intent>
     private lateinit var plantInformation: TextView
+    private lateinit var detailButton: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_disease_check)
 
-        val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true) // Show the back button
-
-        toolbar.setNavigationOnClickListener {
-            finish() // Handle back navigation when the back button is pressed
-        }
-
         plantInformation = findViewById(R.id.diseaseCheckDiseaseInformation)
+        detailButton = findViewById(R.id.detailLabel)
 
         val cameraButton: Button = findViewById(R.id.button_open_camera)
         val galleryButton: Button = findViewById(R.id.button_open_gallery)
         val decodeButton: Button = findViewById(R.id.button_decode)
-        val detailButton: TextView = findViewById(R.id.detailLabel)
 
         plantInformation.text = "Lorem Ipsum"
-
-        detailButton.setOnClickListener {
-            val intent = Intent(this, DiseaseDetailActivity::class.java)
-            startActivity(intent)
-        }
 
         var currentBitmap: Bitmap? = null
         var base64Image: String? = null
@@ -146,7 +134,6 @@ class DiseaseCheckActivity : AppCompatActivity() {
     private fun sendImageToApi(base64Image: String) {
         val apiService = ApiConfig.getApiService()
 
-
         GlobalScope.launch(Dispatchers.IO) {
             try {
                 val predictRequest = PredictRequest(base64Image)
@@ -154,17 +141,54 @@ class DiseaseCheckActivity : AppCompatActivity() {
 
                 Log.d("API Response", response.toString())
                 withContext(Dispatchers.Main) {
-                    // Assuming response contains a field `predictedClass` with the plant information
                     val plantInfo = response.predictedClass
                     plantInformation.text = plantInfo
+                    Log.d("Predicted Class", "Plant Info: $plantInfo")  // Tambahkan log ini
                     Toast.makeText(
                         applicationContext,
                         "API Response: $response",
                         Toast.LENGTH_SHORT
                     ).show()
+
+                    plantInfo?.let { fetchDiseaseDetails(it) }
+
+                    detailButton.setOnClickListener {
+                        val intent =
+                            Intent(this@DiseaseCheckActivity, DiseaseDetailActivity::class.java)
+                        intent.putExtra("PREDICTED_CLASS", plantInfo)
+                        startActivity(intent)
+                    }
                 }
             } catch (e: Exception) {
-                // Handle exceptions
+                Log.e("API Error", e.message ?: "Unknown error")
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(
+                        applicationContext,
+                        "API Error: ${e.message ?: "Unknown error"}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
+    }
+
+    private fun fetchDiseaseDetails(disease: String) {
+        val apiService = ApiConfig.getApiService()
+
+        GlobalScope.launch(Dispatchers.IO) {
+            try {
+                val response = apiService.getDiseaseInfo(disease)
+
+                Log.d("Disease Info Response", response.toString())
+                withContext(Dispatchers.Main) {
+                    detailButton.setOnClickListener {
+                        val intent = Intent(this@DiseaseCheckActivity, DiseaseDetailActivity::class.java)
+                        intent.putExtra("PREDICTED_CLASS", disease)
+                        intent.putExtra("DISEASE_DESCRIPTION", response.diseaseInfo)
+                        startActivity(intent)
+                    }
+                }
+            } catch (e: Exception) {
                 Log.e("API Error", e.message ?: "Unknown error")
                 withContext(Dispatchers.Main) {
                     Toast.makeText(

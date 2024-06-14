@@ -2,6 +2,7 @@ package com.example.wasiatd.data.remote.config
 
 import com.example.wasiatd.data.remote.PredictRequest
 import com.example.wasiatd.data.remote.constants
+import com.example.wasiatd.data.remote.responses.DetailDiseaseResponse
 import com.example.wasiatd.data.remote.responses.DiseaseInfoResponse
 import com.example.wasiatd.data.remote.responses.GetIotResponse
 import com.example.wasiatd.data.remote.responses.IsiItem
@@ -14,6 +15,7 @@ import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiServices {
@@ -21,8 +23,14 @@ interface ApiServices {
     @GET(constants.GET_IOT)
     suspend fun getIot(): GetIotResponse
 
-    @GET(constants.GET_DISEASE_INFO)
-    suspend fun getDiseaseInfo(@Query("disease") disease: String): DiseaseInfoResponse
+//    @GET(constants.GET_DISEASE_INFO)
+//    suspend fun getDiseaseInfo(@Query("disease") disease: String): DiseaseInfoResponse
+//
+//    @GET(constants.GET_DISEASE_INFO)
+//    suspend fun getDiseaseInfo(@Body requestBody: PredictRequest): DiseaseInfoResponse
+
+    @GET("/disease-info/{disease}")
+    suspend fun getDiseaseInfo(@Path("disease") disease: String): DetailDiseaseResponse
 
     @POST(constants.DISEASE_PREDICTION)
     suspend fun predictDisease(@Body requestBody: PredictRequest): PredictResponse
