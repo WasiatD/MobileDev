@@ -45,7 +45,7 @@
     <string name="isWatering">No</string>
     <string name="ph">16</string>
     <string name="timeSchedule">21:48</string>
-    <string name="temperature">25</string>
+    <string name="temperature">24K Magic for The End</string>
     <string name="search">Search</string>
     <string name="camera">Camera</string>
     <string name="gallery">Gallery</string>
@@ -78,7 +78,7 @@
     <string name="location">Location</string>
     <string name="humidityLabel">Humidity</string>
     <string name="humidityLabelWithAnnote">Humidity:</string>
-    <string name="locationLabelWithAnnote">Location:</string>
+    <string name="locationLabelWithAnnote">Location:</string>S
     <string name="plantHumidity">Cold</string>
 
     <!-- Strings used for fragments for navigation -->

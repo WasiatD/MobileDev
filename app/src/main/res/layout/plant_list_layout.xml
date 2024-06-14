@@ -27,20 +27,11 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/listPlantLatinName1"
+                android:id="@+id/listPlantDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter"
-                android:text="@string/locationLabelWithAnnote"
-                android:textSize="14sp"
-                android:layout_marginTop="4dp"/>
-
-            <TextView
-                android:id="@+id/listPlanLocation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/inter"
-                android:text="@string/location"
+                android:text="@string/plantDescription"
                 android:textSize="14sp"
                 android:layout_marginLeft="2sp"
                 android:layout_marginTop="4dp"/>
@@ -52,22 +43,22 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/listPlantHumidity1"
+                android:id="@+id/listPlantLocation1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter"
                 android:layout_marginTop="4dp"
-                android:text="@string/humidityLabelWithAnnote"
+                android:text="@string/locationLabelWithAnnote"
                 android:textSize="14sp"
                 android:justificationMode="inter_word"/>
 
             <TextView
-                android:id="@+id/listPlantHumidity"
+                android:id="@+id/listPlanLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter"
                 android:layout_marginTop="4dp"
-                android:text="@string/nameLabel"
+                android:text="@string/location"
                 android:layout_marginLeft="2sp"
                 android:textSize="14sp"/>
         </LinearLayout>

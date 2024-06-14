@@ -19,21 +19,25 @@ class DetailPlantActivity : AppCompatActivity() {
         }
 
         val plantName = intent.getStringExtra("plant_name")
-        val plantTemperature = intent.getStringExtra("plant_suhu")
+        val plantDescription: String? = intent.getStringExtra("plant_description")
         val plantLocation = intent.getStringExtra("plant_location")
+        val plantTemperature = intent.getStringExtra("plant_suhu")
         val plantHumidity = intent.getStringExtra("plant_humidity")
         val plantPh = intent.getStringExtra("plant_ph")
 
         val plantNameTextView: TextView = findViewById(R.id.plant_name)
-        val plantTemperatureTextView: TextView = findViewById(R.id.plant_temperature)
         val plantLocationTextView: TextView = findViewById(R.id.plant_location)
-        val plantHumidityTextView: TextView = findViewById(R.id.plant_humidity)
-        val plantPhTextView: TextView = findViewById(R.id.plant_ph)
+        val plantDescriptionTextView: TextView = findViewById(R.id.plant_description)
+
+//        val plantTemperatureTextView: TextView = findViewById(R.id.plant_temperature)
+//        val plantHumidityTextView: TextView = findViewById(R.id.plant_humidity)
+//        val plantPhTextView: TextView = findViewById(R.id.plant_ph)
 
         plantNameTextView.text = plantName
-        plantTemperatureTextView.text = plantTemperature
         plantLocationTextView.text = plantLocation
-        plantHumidityTextView.text = plantHumidity
-        plantPhTextView.text = plantPh
+        plantDescriptionTextView.text = plantDescription
+//        plantTemperatureTextView.text = plantTemperature
+//        plantHumidityTextView.text = plantHumidity
+//        plantPhTextView.text = plantPh
     }
 }

@@ -58,13 +58,11 @@ class PlantFragment : Fragment() {
                         dataFromApi?.let { isiItems ->
                             for (isiItem in isiItems) {
                                 val id = isiItem?.id
-                                val name = isiItem?.nama
-                                val location = isiItem?.location
-                                val suhu = isiItem?.suhu
-                                val humidity = isiItem?.kelembapan
-                                val ph = isiItem?.ph
+                                val nama = isiItem?.nama
+                                val lokasi = isiItem?.lokasi
+                                val deskripsi = isiItem?.deskripsi
 
-                                val itemDataDashboard = ItemDataDashboard("$id", "$name", "$ph", "$location", "$suhu", "$humidity")
+                                val itemDataDashboard = ItemDataDashboard("$id", "$nama", "$deskripsi", "$lokasi")
 
                                 itemDataDashboardList.add(itemDataDashboard)
                             }

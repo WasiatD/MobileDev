@@ -15,7 +15,7 @@ class PlantAdapter(private val plantList: List<ItemDataDashboard>) : RecyclerVie
     inner class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val plantName: TextView = itemView.findViewById(R.id.listPlantName)
         val plantLocation: TextView = itemView.findViewById(R.id.listPlanLocation)
-        val plantHumidity: TextView = itemView.findViewById(R.id.listPlantHumidity)
+        val plantDescription: TextView = itemView.findViewById(R.id.listPlantDescription)
 //        val id = isiItem?.id
 //        val name = isiItem?.name
 //        val location = isiItem?.location
@@ -32,20 +32,19 @@ class PlantAdapter(private val plantList: List<ItemDataDashboard>) : RecyclerVie
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         val currentItem = plantList[position]
 
-        holder.plantName.text = currentItem.name
+        holder.plantName.text = currentItem.nama
 //        Log.d("PlantAdapter", "onBindViewHolder: ${currentItem.name}")
-        holder.plantLocation.text = currentItem.location
+        holder.plantLocation.text = currentItem.lokasi
 //        Log.d("PlantAdapter", "onBindViewHolder: ${currentItem.location}")
-        holder.plantHumidity.text = currentItem.humidity
+        holder.plantDescription.text = currentItem.deskripsi
 //        Log.d("PlantAdapter", "onBindViewHolder: ${currentItem.humidity}")
         holder.itemView.setOnClickListener {
             val context = holder.itemView.context
             val intent = Intent(context, DetailPlantActivity::class.java).apply {
-                putExtra("plant_name", currentItem.name)
-                putExtra("plant_location", currentItem.location)
-                putExtra("plant_humidity", currentItem.humidity)
-                putExtra("plant_suhu", currentItem.suhu)
-                putExtra("plant_ph", currentItem.ph)
+                putExtra("plant_name", currentItem.nama)
+                putExtra("plant_location", currentItem.lokasi)
+                putExtra("plant_description", currentItem.deskripsi)
+                putExtra("plant_id", currentItem.id)
             }
             context.startActivity(intent)
         }

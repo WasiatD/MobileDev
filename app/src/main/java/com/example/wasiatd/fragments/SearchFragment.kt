@@ -39,7 +39,7 @@ class SearchFragment : Fragment() {
 
         // Create dummy data
         val dummyData = listOf(
-            ItemDataDashboard("1", "Tomat", "In Front of Red House", "80%", "20%", "30%"),
+            ItemDataDashboard("1", "Tomat", "In Front of Red House", "80%"),
         )
 
         val adapter = DashboardAdapter(dummyData)
