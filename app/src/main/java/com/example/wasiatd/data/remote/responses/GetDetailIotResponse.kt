@@ -6,10 +6,12 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class GetDetailIotResponse(
-	@field:SerializedName("ph")
-	val ph: String,
+	@field:SerializedName("cahaya")
+	val cahaya: String,
 	@field:SerializedName("suhu")
 	val suhu: String,
 	@field:SerializedName("kelembapan")
-	val kelembapan: String
+	val kelembapan: String,
+	@field:SerializedName("relay")
+	val relay: String
 ) : Parcelable

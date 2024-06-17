@@ -28,9 +28,10 @@ class DetailPlantActivity : AppCompatActivity() {
     private lateinit var itemDetailPlantList: MutableList<ItemDetailPlant>
     private lateinit var apiService: ApiServices
 
-    private lateinit var phTextView: TextView
+    private lateinit var relayTextView: TextView
     private lateinit var suhuTextView: TextView
     private lateinit var kelembapanTextView: TextView
+    private lateinit var cahayaTextView: TextView
 
     private lateinit var plantNameEditText: EditText
     private lateinit var plantDescriptionEditText: EditText
@@ -64,9 +65,10 @@ class DetailPlantActivity : AppCompatActivity() {
         plantLocationEditText.setText(plantLocation)
         plantDescriptionEditText.setText(plantDescription)
 
-        phTextView = findViewById(R.id.plant_ph)
+        relayTextView = findViewById(R.id.plant_relay)
         suhuTextView = findViewById(R.id.plant_temperature)
         kelembapanTextView = findViewById(R.id.plant_humidity)
+        cahayaTextView = findViewById(R.id.plant_light)
         saveButton = findViewById(R.id.button_save)
 
         itemDetailPlantList = mutableListOf()
@@ -90,12 +92,13 @@ class DetailPlantActivity : AppCompatActivity() {
                     val detailResponse = response.body()
                     Log.d("DetailPlantActivity", "Received response: $detailResponse")
                     detailResponse?.let {
-                        itemDetailPlantList.add(ItemDetailPlant(it.ph, it.suhu, it.kelembapan))
-                        Log.d("DetailPlantActivity", "Added item: PH=${it.ph}, Suhu=${it.suhu}, Kelembapan=${it.kelembapan}")
+                        itemDetailPlantList.add(ItemDetailPlant(it.relay, it.suhu, it.kelembapan, it.cahaya))
+                        Log.d("DetailPlantActivity", "Added item: Relay=${it.relay}, Suhu=${it.suhu}, Kelembapan=${it.kelembapan}. Cahaya=${it.cahaya}")
 
-                        phTextView.text = it.ph
+                        relayTextView.text = it.relay
                         suhuTextView.text = it.suhu
                         kelembapanTextView.text = it.kelembapan
+                        cahayaTextView.text = it.cahaya
                     }
                 } else {
                     Log.e("DetailPlantActivity", "Response not successful: ${response.errorBody()?.string()}")

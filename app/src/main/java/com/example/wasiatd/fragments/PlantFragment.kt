@@ -36,52 +36,51 @@ class PlantFragment : Fragment() {
         }
     }
 
-        override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
-        ): View? {
-            val view = inflater.inflate(R.layout.fragment_plant, container, false)
-            recyclerView = view.findViewById(R.id.recyclerView)
-            recyclerView.layoutManager = LinearLayoutManager(context)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.fragment_plant, container, false)
+        recyclerView = view.findViewById(R.id.recyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(context)
 
-            val apiService = ApiConfig.getApiService()
-            val itemDataDashboardList = mutableListOf<ItemDataDashboard>()
+        val apiService = ApiConfig.getApiService()
+        val itemDataDashboardList = mutableListOf<ItemDataDashboard>()
 
-            GlobalScope.launch(Dispatchers.IO) {
-                try {
-                    withContext(Dispatchers.Main) {
-                        recyclerView.visibility = View.GONE
-                    }
-                    val response = apiService.getIot()
-                    val dataFromApi = response.isi
-                    withContext(Dispatchers.Main) {
-                        dataFromApi?.let { isiItems ->
-                            for (isiItem in isiItems) {
-                                val id = isiItem?.id
-                                val nama = isiItem?.nama
-                                val lokasi = isiItem?.lokasi
-                                val deskripsi = isiItem?.deskripsi
+        GlobalScope.launch(Dispatchers.IO) {
+            try {
+                withContext(Dispatchers.Main) {
+                    recyclerView.visibility = View.GONE
+                }
+                val response = apiService.getIot()
+                val dataFromApi = response.isi
+                withContext(Dispatchers.Main) {
+                    dataFromApi?.let { isiItems ->
+                        for (isiItem in isiItems) {
+                            val id = isiItem?.id
+                            val nama = isiItem?.nama
+                            val lokasi = isiItem?.lokasi ?: "Please fill this field"
+                            val deskripsi = isiItem?.deskripsi ?: "Please fill this field"
 
-                                val itemDataDashboard = ItemDataDashboard("$id", "$nama", "$deskripsi", "$lokasi")
+                            val itemDataDashboard = ItemDataDashboard(id ?: "", nama ?: "", deskripsi, lokasi)
 
-                                itemDataDashboardList.add(itemDataDashboard)
-                            }
-                            val adapter = PlantAdapter(itemDataDashboardList)
-                            recyclerView.adapter = adapter
-                            recyclerView.visibility = View.VISIBLE
+                            itemDataDashboardList.add(itemDataDashboard)
                         }
-                    }
-                } catch (e: Exception) {
-                    // Handle API error
-                    Log.e("API Error", e.message ?: "Unknown error")
-                    withContext(Dispatchers.Main) {
+                        val adapter = PlantAdapter(itemDataDashboardList)
+                        recyclerView.adapter = adapter
                         recyclerView.visibility = View.VISIBLE
                     }
                 }
+            } catch (e: Exception) {
+                // Handle API error
+                Log.e("API Error", e.message ?: "Unknown error")
+                withContext(Dispatchers.Main) {
+                    recyclerView.visibility = View.VISIBLE
+                }
             }
-            return view
+        }
+        return view
     }
-
     companion object {
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
@@ -92,72 +91,4 @@ class PlantFragment : Fragment() {
                 }
             }
     }
-
-//    class PlantFragment : Fragment() {
-//        // TODO: Rename and change types of parameters
-//        private var param1: String? = null
-//        private var param2: String? = null
-//
-//        override fun onCreate(savedInstanceState: Bundle?) {
-//            super.onCreate(savedInstanceState)
-//            arguments?.let {
-//                param1 = it.getString(ARG_PARAM1)
-//                param2 = it.getString(ARG_PARAM2)
-//            }
-//        }
-//
-//        override fun onCreateView(
-//            inflater: LayoutInflater, container: ViewGroup?,
-//            savedInstanceState: Bundle?
-//        ): View? {
-//            val view = inflater.inflate(R.layout.fragment_plant, container, false)
-//
-//            val recyclerView: RecyclerView? = view.findViewById(R.id.recyclerView)
-//            recyclerView?.layoutManager = LinearLayoutManager(context)
-//
-//            val adapter = PlantAdapter(getPlants())
-//            recyclerView?.adapter = adapter
-//
-//            return view
-//        }
-//
-//        private fun getPlants(): List<Plant> {
-//            return listOf(
-//                Plant(
-//                    name = "Tomato",
-//                    location = "Greenhouse",
-//                    description = "Loren Ipsum"
-//                ),
-//                Plant(
-//                    name = "Potato",
-//                    location = "Field",
-//                    description = "Loren Ipsum"
-//                ),
-//                Plant(
-//                    name = "Strawberry",
-//                    location = "Garden",
-//                    description = "Loren Ipsum"
-//                )
-//            )
-//        }
-//
-//        companion object {
-//            /**
-//             * Use this factory method to create a new instance of
-//             * this fragment using the provided parameters.
-//             *
-//             * @param param1 Parameter 1.
-//             * @param param2 Parameter 2.
-//             * @return A new instance of fragment PlantFragment.
-//             */
-//            @JvmStatic
-//            fun newInstance(param1: String, param2: String) =
-//                PlantFragment().apply {
-//                    arguments = Bundle().apply {
-//                        putString(ARG_PARAM1, param1)
-//                        putString(ARG_PARAM2, param2)
-//                    }
-//                }
-//        }
-//    }
 }

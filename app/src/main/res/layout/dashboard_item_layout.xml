@@ -31,23 +31,9 @@
                 android:id="@+id/dashboardPlantLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/plantLocation"
+                android:text="@string/plantCondition"
                 android:textSize="14sp"
                 android:paddingBottom="4dp"/>
-
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/dashboardHumidity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/humidity"
-                android:textSize="12sp"
-                android:paddingBottom="4dp"/>
-
         </LinearLayout>
 
     </LinearLayout>
