@@ -10,11 +10,14 @@ import com.example.wasiatd.data.remote.responses.IsiItem
 import com.example.wasiatd.data.remote.responses.LoginResponse
 import com.example.wasiatd.data.remote.responses.PredictResponse
 import com.example.wasiatd.data.remote.responses.RegisterResponse
+import com.example.wasiatd.data.remote.responses.UpdatePlantResponse
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
+import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -45,6 +48,9 @@ interface ApiServices {
     @GET("getDataById/{IoT_ID}")
     fun getDetailIotResponse(@Path("IoT_ID") id: String): Call<GetDetailIotResponse>
 
+    @PATCH("updateDataIOT")
+    fun updatePlantData(@Body requestBody: RequestBody): Call<UpdatePlantResponse>
+
 //    @FormUrlEncoded
 //    @POST("/predict")
 //    fun predictDisease(
@@ -64,5 +70,4 @@ interface ApiServices {
         @Field("email") email: String,
         @Field("password") password: String,
     ): Call<LoginResponse>
-
 }

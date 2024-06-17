@@ -16,12 +16,6 @@ class PlantAdapter(private val plantList: List<ItemDataDashboard>) : RecyclerVie
         val plantName: TextView = itemView.findViewById(R.id.listPlantName)
         val plantLocation: TextView = itemView.findViewById(R.id.listPlanLocation)
         val plantDescription: TextView = itemView.findViewById(R.id.listPlantDescription)
-//        val id = isiItem?.id
-//        val name = isiItem?.name
-//        val location = isiItem?.location
-//        val suhu = isiItem?.suhu
-//        val humidity = isiItem?.kelembapan
-//        val ph = isiItem?.ph
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {

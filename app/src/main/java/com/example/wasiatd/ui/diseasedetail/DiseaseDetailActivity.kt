@@ -21,7 +21,6 @@ class DiseaseDetailActivity : AppCompatActivity() {
         Log.d("DiseaseDetailActivity", "Predicted Class: $predictedClass")
         Log.d("DiseaseDetailActivity", "Disease Description: $diseaseDescription")
 
-        // Pastikan nilai tidak null sebelum setText
         plantDiseaseEditText.setText(predictedClass ?: "No predicted class available")
         diseaseDescriptionEditText.setText(diseaseDescription ?: "No description available")
     }
