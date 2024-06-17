@@ -8,6 +8,11 @@
     android:background="@color/white"
     tools:context=".ui.diseasecheck.DiseaseCheckActivity">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -146,7 +151,7 @@
                             android:background="@drawable/edit_text_background_white"
                             android:fontFamily="@font/inter"
                             android:padding="12dp"
-                            android:text="@string/plantDiseaseInformation"
+                            android:text="@string/diseaseStartLabel"
                             android:textColor="@color/black"
                             android:textSize="16sp"
                             tools:ignore="Autofill" />
@@ -166,4 +171,19 @@
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
+    </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="364dp"
+        android:visibility="gone"
+        android:elevation="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

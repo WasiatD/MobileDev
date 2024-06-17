@@ -10,7 +10,9 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Base64
 import android.util.Log
+import android.view.View
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -34,6 +36,7 @@ class DiseaseCheckActivity : AppCompatActivity() {
     private lateinit var galleryLauncher: ActivityResultLauncher<Intent>
     private lateinit var plantInformation: TextView
     private lateinit var detailButton: TextView
+    private lateinit var progressBar: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,12 +44,12 @@ class DiseaseCheckActivity : AppCompatActivity() {
 
         plantInformation = findViewById(R.id.diseaseCheckDiseaseInformation)
         detailButton = findViewById(R.id.detailLabel)
+        progressBar = findViewById(R.id.progressBar)
 
         val cameraButton: Button = findViewById(R.id.button_open_camera)
         val galleryButton: Button = findViewById(R.id.button_open_gallery)
         val decodeButton: Button = findViewById(R.id.button_decode)
-
-        plantInformation.text = "Lorem Ipsum"
+        detailButton.visibility = View.GONE
 
         var currentBitmap: Bitmap? = null
         var base64Image: String? = null
@@ -133,7 +136,7 @@ class DiseaseCheckActivity : AppCompatActivity() {
 
     private fun sendImageToApi(base64Image: String) {
         val apiService = ApiConfig.getApiService()
-
+        showLoading(true)
         GlobalScope.launch(Dispatchers.IO) {
             try {
                 val predictRequest = PredictRequest(base64Image)
@@ -143,6 +146,7 @@ class DiseaseCheckActivity : AppCompatActivity() {
                 withContext(Dispatchers.Main) {
                     val plantInfo = response.predictedClass
                     plantInformation.text = plantInfo
+                    showLoading(false)
                     Log.d("Predicted Class", "Plant Info: $plantInfo")  // Tambahkan log ini
                     Toast.makeText(
                         applicationContext,
@@ -174,6 +178,7 @@ class DiseaseCheckActivity : AppCompatActivity() {
 
     private fun fetchDiseaseDetails(disease: String) {
         val apiService = ApiConfig.getApiService()
+        showLoading(true)
 
         GlobalScope.launch(Dispatchers.IO) {
             try {
@@ -181,6 +186,7 @@ class DiseaseCheckActivity : AppCompatActivity() {
 
                 Log.d("Disease Info Response", response.toString())
                 withContext(Dispatchers.Main) {
+                    detailButton.visibility = View.VISIBLE
                     detailButton.setOnClickListener {
                         val intent = Intent(this@DiseaseCheckActivity, DiseaseDetailActivity::class.java)
                         intent.putExtra("PREDICTED_CLASS", disease)
@@ -197,7 +203,15 @@ class DiseaseCheckActivity : AppCompatActivity() {
                         Toast.LENGTH_SHORT
                     ).show()
                 }
+            } finally {
+                withContext(Dispatchers.Main) {
+                    showLoading(false)
+                }
             }
         }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 }

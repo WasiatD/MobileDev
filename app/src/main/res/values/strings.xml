@@ -84,6 +84,7 @@
     <string name="plantHumidity">Cold</string>
     <string name="relayLabel">Relay</string>
     <string name="relay">70%</string>
+    <string name="diseaseStartLabel">Upload Your Image First!</string>
 
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>

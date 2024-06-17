@@ -3,6 +3,7 @@ package com.example.wasiatd.ui.login
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -40,9 +41,13 @@ class LoginActivity : AppCompatActivity() {
                 val email = binding.emailField.text.toString()
                 val password = binding.passwordField.text.toString()
 
+                binding.progressBar.visibility = View.VISIBLE
+
                 loginViewModel.getLoginInfo(email, password)
 
                 loginViewModel.login.observe(this) {
+                    binding.progressBar.visibility = View.GONE
+
                     if (it?.registered == true) {
                         val editor = sharedPreferences.edit()
                         editor.putString("idToken", it.idToken)
@@ -60,6 +65,8 @@ class LoginActivity : AppCompatActivity() {
 
                 loginViewModel.errorMessage.observe(this) { errorMessage ->
                     if(errorMessage != null) {
+                        binding.progressBar.visibility = View.GONE
+
                         val message = if(errorMessage == LoginViewModel.INVALID_CREDENTIALS) R.string.invalidCredential else R.string.systemFailure
                         Toast.makeText(this, getString(message), Toast.LENGTH_SHORT).show()
                         loginViewModel.clearErrorMessage()
