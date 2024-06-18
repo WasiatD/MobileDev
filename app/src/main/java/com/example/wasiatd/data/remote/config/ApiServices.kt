@@ -1,5 +1,6 @@
 package com.example.wasiatd.data.remote.config
 
+import com.example.wasiatd.data.remote.NotesRequest
 import com.example.wasiatd.data.remote.PredictRequest
 import com.example.wasiatd.data.remote.constants
 import com.example.wasiatd.data.remote.responses.DetailDiseaseResponse
@@ -48,6 +49,9 @@ interface ApiServices {
 
     @GET("getDataById/{IoT_ID}")
     fun getDetailIotResponse(@Path("IoT_ID") id: String): Call<GetDetailIotResponse>
+
+    @POST("/addNotes")
+    fun addNotes(@Body requestBody: NotesRequest): Call<GetNotesResponse>
 
     @PATCH("updateDataIOT")
     fun updatePlantData(@Body requestBody: RequestBody): Call<UpdatePlantResponse>

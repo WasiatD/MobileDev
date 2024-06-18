@@ -53,16 +53,14 @@
                     android:textColor="@color/sage_green"
                     android:textSize="16sp" />
 
-                <EditText
-                    android:id="@+id/searchView"
+                <Button
+                    android:id="@+id/addTaskButton1"
                     android:layout_width="164sp"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@color/sage_green"
                     android:layout_marginTop="8dp"
-                    android:hint="@string/addTask"
-                    android:background="@drawable/seach_background"
-                    android:gravity="center"
-                    android:inputType="text"
-                    android:padding="12dp"
+                    android:text="@string/addTask"
+                    android:textColor="@android:color/white"
                     android:textSize="12sp" />
             </LinearLayout>
 

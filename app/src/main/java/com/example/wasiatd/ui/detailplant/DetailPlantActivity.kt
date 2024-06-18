@@ -17,9 +17,7 @@ import com.example.wasiatd.data.remote.config.ApiServices
 import com.example.wasiatd.data.remote.responses.GetDetailIotResponse
 import com.example.wasiatd.data.remote.responses.UpdatePlantResponse
 import com.example.wasiatd.databinding.CustomToastBinding
-import com.example.wasiatd.ui.login.LoginActivity
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
 import retrofit2.Call

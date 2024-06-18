@@ -1,16 +1,19 @@
 package com.example.wasiatd.ui.dashboard.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
 import com.example.wasiatd.R
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.wasiatd.data.local.ItemDataTask
 import com.example.wasiatd.data.remote.config.ApiConfig
+import com.example.wasiatd.ui.task.AddTaskActivity
 import com.example.wasiatd.utils.TaskAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -41,6 +44,12 @@ class TasksFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_tasks, container, false)
         recyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(context)
+
+        val addTaskButton1: Button = view.findViewById(R.id.addTaskButton1)
+        addTaskButton1.setOnClickListener {
+            val intent = Intent(context, AddTaskActivity::class.java)
+            startActivity(intent)
+        }
 
         val apiService = ApiConfig.getApiService()
         val itemDataTaskList = mutableListOf<ItemDataTask>()
@@ -79,6 +88,7 @@ class TasksFragment : Fragment() {
         }
         return view
     }
+
     companion object {
         @JvmStatic
         fun newInstance(param1: String, param2: String) =

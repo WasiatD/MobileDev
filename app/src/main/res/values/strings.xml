@@ -85,6 +85,13 @@
     <string name="relayLabel">Relay</string>
     <string name="relay">70%</string>
     <string name="diseaseStartLabel">Upload Your Image First!</string>
+    <string name="addNewTaskLabel">Add New Task</string>
+    <string name="addNewTaskText">Here is your to-do-list!</string>
+    <string name="taskTittleLabel">Task Tittle</string>
+    <string name="taskTittle">Tittle</string>
+    <string name="taskDescriptionLabel">Task Description</string>
+    <string name="taskDescriptionText">Description</string>
+    <string name="addTaskButton">Add Task</string>
 
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
