@@ -170,11 +170,7 @@ class DiseaseCheckFragment : Fragment() {
             } catch (e: Exception) {
                 Log.e("API Error", e.message ?: "Unknown error")
                 withContext(Dispatchers.Main) {
-                    Toast.makeText(
-                        requireContext(),
-                        "API Error: ${e.message ?: "Unknown error"}",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    showCustomToast("Error, Please try Again")
                 }
             }
         }
