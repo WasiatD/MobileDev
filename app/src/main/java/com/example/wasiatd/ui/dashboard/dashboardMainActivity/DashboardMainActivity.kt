@@ -15,11 +15,10 @@ import com.example.wasiatd.ui.dashboard.fragments.HomeFragment
 import com.example.wasiatd.ui.dashboard.fragments.PlantFragment
 import com.example.wasiatd.ui.dashboard.fragments.TasksFragment
 import com.example.wasiatd.ui.dashboard.fragments.SearchFragment
-import com.example.wasiatd.ui.diseasecheck.DiseaseCheckActivity
 import com.example.wasiatd.ui.login.LoginActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class dashboardMainActivity : AppCompatActivity() {
+class DashboardMainActivity : AppCompatActivity() {
     private val homeFragment = HomeFragment()
     private val plantFragment = PlantFragment()
     private val tasksFragment = TasksFragment()
