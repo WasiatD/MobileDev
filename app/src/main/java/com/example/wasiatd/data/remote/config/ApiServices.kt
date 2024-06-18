@@ -6,6 +6,7 @@ import com.example.wasiatd.data.remote.responses.DetailDiseaseResponse
 import com.example.wasiatd.data.remote.responses.DiseaseInfoResponse
 import com.example.wasiatd.data.remote.responses.GetDetailIotResponse
 import com.example.wasiatd.data.remote.responses.GetIotResponse
+import com.example.wasiatd.data.remote.responses.GetNotesResponse
 import com.example.wasiatd.data.remote.responses.IsiItem
 import com.example.wasiatd.data.remote.responses.LoginResponse
 import com.example.wasiatd.data.remote.responses.PredictResponse
@@ -70,4 +71,7 @@ interface ApiServices {
         @Field("email") email: String,
         @Field("password") password: String,
     ): Call<LoginResponse>
+
+    @GET(constants.GET_NOTES)
+    suspend fun getNotes(): GetNotesResponse
 }

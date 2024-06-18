@@ -27,11 +27,8 @@ class PlantAdapter(private val plantList: List<ItemDataDashboard>) : RecyclerVie
         val currentItem = plantList[position]
 
         holder.plantName.text = currentItem.nama
-//        Log.d("PlantAdapter", "onBindViewHolder: ${currentItem.name}")
         holder.plantLocation.text = currentItem.lokasi
-//        Log.d("PlantAdapter", "onBindViewHolder: ${currentItem.location}")
         holder.plantDescription.text = currentItem.deskripsi
-//        Log.d("PlantAdapter", "onBindViewHolder: ${currentItem.humidity}")
         holder.itemView.setOnClickListener {
             val context = holder.itemView.context
             val intent = Intent(context, DetailPlantActivity::class.java).apply {
