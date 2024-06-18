@@ -29,9 +29,9 @@
         <activity
             android:name=".ui.diseasedetail.DiseaseDetailActivity"
             android:exported="false" />
-        <activity
-            android:name=".ui.search.SearchActivity"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".ui.search.SearchActivity"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".ui.addplant.AddPlantActivity"
             android:exported="false" />
@@ -56,7 +56,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.dashboard.dashboardMainActivity.dashboardMainActivity"
+            android:name=".ui.dashboard.dashboardMainActivity.DashboardMainActivity"
             android:exported="false" />
         <activity
             android:name=".ui.main.MainActivity"

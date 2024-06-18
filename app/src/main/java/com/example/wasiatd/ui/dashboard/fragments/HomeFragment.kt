@@ -27,6 +27,8 @@ class HomeFragment : Fragment() {
     private var param2: String? = null
     private lateinit var progressBar: ProgressBar
     private lateinit var recyclerView: RecyclerView
+    private lateinit var plantCount: TextView
+    private lateinit var tasksCount: TextView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,6 +46,8 @@ class HomeFragment : Fragment() {
 
         progressBar = view.findViewById(R.id.progressBar)
         recyclerView = view.findViewById(R.id.recyclerView)
+        plantCount = view.findViewById(R.id.plantCount)
+        tasksCount = view.findViewById(R.id.tasksCount)
         recyclerView.layoutManager = LinearLayoutManager(context)
 
         val apiService = ApiConfig.getApiService()
@@ -76,6 +80,7 @@ class HomeFragment : Fragment() {
 
                         progressBar.visibility = View.GONE
                         recyclerView.visibility = View.VISIBLE
+                        plantCount.text = itemDataDashboardList.size.toString()
                     }
                 }
             } catch (e: Exception) {

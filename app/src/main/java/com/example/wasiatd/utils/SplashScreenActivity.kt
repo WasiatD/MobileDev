@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.wasiatd.R
-import com.example.wasiatd.ui.dashboard.dashboardMainActivity.dashboardMainActivity
+import com.example.wasiatd.ui.dashboard.dashboardMainActivity.DashboardMainActivity
 import com.example.wasiatd.ui.login.LoginActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -31,7 +31,7 @@ class SplashScreenActivity : AppCompatActivity() {
         if (idToken.isNullOrEmpty()) {
             startActivity(Intent(this, LoginActivity::class.java))
         } else {
-            startActivity(Intent(this, dashboardMainActivity::class.java))
+            startActivity(Intent(this, DashboardMainActivity::class.java))
         }
         finish()
     }

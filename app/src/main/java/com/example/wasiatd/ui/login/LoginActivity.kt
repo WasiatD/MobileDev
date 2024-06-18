@@ -8,7 +8,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.wasiatd.R
-import com.example.wasiatd.ui.dashboard.dashboardMainActivity.dashboardMainActivity
+import com.example.wasiatd.ui.dashboard.dashboardMainActivity.DashboardMainActivity
 import com.example.wasiatd.data.remote.config.ApiConfig
 import com.example.wasiatd.databinding.ActivityLoginBinding
 import com.example.wasiatd.ui.register.RegisterActivity
@@ -31,7 +31,7 @@ class LoginActivity : AppCompatActivity() {
         val auth = sharedPreferences.getString("idToken", null)
         if(auth != null) {
             ApiConfig.setAuth(auth)
-            val intent = Intent(this@LoginActivity, dashboardMainActivity::class.java)
+            val intent = Intent(this@LoginActivity, DashboardMainActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
         }
@@ -56,7 +56,7 @@ class LoginActivity : AppCompatActivity() {
 
                         Toast.makeText(this@LoginActivity, "You are signed in!", Toast.LENGTH_SHORT).show()
 
-                        val intent = Intent(this@LoginActivity, dashboardMainActivity::class.java)
+                        val intent = Intent(this@LoginActivity, DashboardMainActivity::class.java)
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
                         startActivity(intent)
                     } else

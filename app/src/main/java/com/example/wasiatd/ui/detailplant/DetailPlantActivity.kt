@@ -9,7 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.wasiatd.R
-import com.example.wasiatd.ui.dashboard.dashboardMainActivity.dashboardMainActivity
+import com.example.wasiatd.ui.dashboard.dashboardMainActivity.DashboardMainActivity
 import com.example.wasiatd.data.local.ItemDetailPlant
 import com.example.wasiatd.data.remote.config.ApiConfig
 import com.example.wasiatd.data.remote.config.ApiServices
@@ -134,7 +134,7 @@ class DetailPlantActivity : AppCompatActivity() {
             override fun onResponse(call: Call<UpdatePlantResponse>, response: Response<UpdatePlantResponse>) {
                 if (response.isSuccessful) {
                     Toast.makeText(this@DetailPlantActivity, response.body()?.message ?: "Plant data updated successfully", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this@DetailPlantActivity, dashboardMainActivity::class.java)
+                    val intent = Intent(this@DetailPlantActivity, DashboardMainActivity::class.java)
                     startActivity(intent)
                     finish()
                 } else {

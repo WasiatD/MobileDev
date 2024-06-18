@@ -14,6 +14,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
@@ -37,6 +38,7 @@ class DiseaseCheckFragment : Fragment() {
     private lateinit var plantInformation: TextView
     private lateinit var detailButton: TextView
     private lateinit var progressBar: ProgressBar
+    private lateinit var capturedImageView: ImageView
 
     private var currentBitmap: Bitmap? = null
     private var base64Image: String? = null
@@ -49,6 +51,7 @@ class DiseaseCheckFragment : Fragment() {
         plantInformation = view.findViewById(R.id.diseaseCheckDiseaseInformation)
         detailButton = view.findViewById(R.id.detailLabel)
         progressBar = view.findViewById(R.id.progressBar)
+        capturedImageView = view.findViewById(R.id.capturedImageView)
 
         val cameraButton: Button = view.findViewById(R.id.button_open_camera)
         val galleryButton: Button = view.findViewById(R.id.button_open_gallery)
@@ -63,6 +66,7 @@ class DiseaseCheckFragment : Fragment() {
                     currentBitmap = resizeAndCropBitmap(imageBitmap)
                     base64Image = bitmapToBase64(currentBitmap!!)
                     Log.d("Image Base64", base64Image!!)
+                    capturedImageView.setImageBitmap(currentBitmap)  // Set the captured image to ImageView
                 }
             }
 
@@ -75,6 +79,7 @@ class DiseaseCheckFragment : Fragment() {
                         currentBitmap = resizeAndCropBitmap(currentBitmap!!)
                         base64Image = bitmapToBase64(currentBitmap!!)
                         Log.d("Image Base64", base64Image!!)
+                        capturedImageView.setImageBitmap(currentBitmap)  // Set the selected image to ImageView
                     }
                 }
             }
@@ -147,8 +152,6 @@ class DiseaseCheckFragment : Fragment() {
                 Log.d("API Response", response.toString())
                 withContext(Dispatchers.Main) {
                     val plantInfo = response.predictedClass
-                    plantInformation.text = plantInfo
-                    showLoading(false)
                     Log.d("Predicted Class", "Plant Info: $plantInfo")
                     Toast.makeText(
                         requireContext(),
@@ -180,18 +183,20 @@ class DiseaseCheckFragment : Fragment() {
 
     private fun fetchDiseaseDetails(disease: String) {
         val apiService = ApiConfig.getApiService()
-        showLoading(true)
 
         GlobalScope.launch(Dispatchers.IO) {
             try {
                 val response = apiService.getDiseaseInfo(disease)
 
                 Log.d("Disease Info Response", response.toString())
+
+                val formatDiseaseName = formatDiseaseName(disease)
+                plantInformation.text = formatDiseaseName
                 withContext(Dispatchers.Main) {
                     detailButton.visibility = View.VISIBLE
                     detailButton.setOnClickListener {
                         val intent = Intent(requireContext(), DiseaseDetailActivity::class.java)
-                        intent.putExtra("PREDICTED_CLASS", disease)
+                        intent.putExtra("PREDICTED_CLASS", formatDiseaseName)
                         intent.putExtra("DISEASE_DESCRIPTION", response.diseaseInfo)
                         startActivity(intent)
                     }
@@ -217,13 +222,17 @@ class DiseaseCheckFragment : Fragment() {
         progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
+    private fun formatDiseaseName(disease: String): String {
+        val diseaseTrimmed = disease.replace("_+".toRegex(), " ")
+        Log.d("diseaseTrim", diseaseTrimmed)
+        return diseaseTrimmed
+    }
+
     companion object {
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             DiseaseCheckFragment().apply {
                 arguments = Bundle().apply {
-//                    putString(ARG_PARAM1, param1)
-//                    putString(ARG_PARAM2, param2)
                 }
             }
     }
