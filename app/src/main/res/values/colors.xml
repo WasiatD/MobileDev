@@ -8,5 +8,8 @@
     <color name="sage_green">#004424</color>
     <color name="red">#FF0000</color>
     <color name="blue">#0000FF</color>
+    <color name="successBackground">#4CAF50</color>
+    <color name="warningBackground">#FFC107</color>
+    <color name="errorBackground">#F44336</color>
 
 </resources>

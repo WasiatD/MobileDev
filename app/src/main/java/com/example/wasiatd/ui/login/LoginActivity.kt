@@ -14,6 +14,8 @@ import com.example.wasiatd.databinding.CustomToastBinding
 import com.example.wasiatd.ui.dashboard.dashboardMainActivity.DashboardMainActivity
 import com.example.wasiatd.data.remote.config.ApiConfig
 import com.example.wasiatd.ui.register.RegisterActivity
+import com.example.wasiatd.utils.CustomToast
+import com.example.wasiatd.utils.ToastType
 
 class LoginActivity : AppCompatActivity() {
 
@@ -56,13 +58,12 @@ class LoginActivity : AppCompatActivity() {
                         editor.putString("email", it.email)
                         editor.apply()
 
-                        showCustomToast("You are signed in!")
-
+                        showSuccessToast()
                         val intent = Intent(this@LoginActivity, DashboardMainActivity::class.java)
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
                         startActivity(intent)
                     } else {
-                        showCustomToast(getString(R.string.invalidCredential))
+                        showErrorToast()
                     }
                 }
 
@@ -75,7 +76,7 @@ class LoginActivity : AppCompatActivity() {
                         } else {
                             getString(R.string.systemFailure)
                         }
-                        showCustomToast(message)
+                        showErrorToast()
                         loginViewModel.clearErrorMessage()
                     }
                 }
@@ -88,15 +89,11 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun showCustomToast(message: String) {
-        val inflater = LayoutInflater.from(this)
-        val binding = CustomToastBinding.inflate(inflater)
-        binding.toastText.text = message
+    private fun showSuccessToast() {
+        CustomToast.showCustomToast(this, "Login Success Welcome To WasiatD", ToastType.SUCCESS)
+    }
 
-        Toast(this).apply {
-            duration = Toast.LENGTH_SHORT
-            view = binding.root
-            show()
-        }
+    private fun showErrorToast() {
+        CustomToast.showCustomToast(this, "Login Failed", ToastType.ERROR)
     }
 }

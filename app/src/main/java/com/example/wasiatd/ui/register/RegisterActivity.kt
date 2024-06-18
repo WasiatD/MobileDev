@@ -14,6 +14,8 @@ import com.example.wasiatd.R
 import com.example.wasiatd.databinding.ActivityRegisterBinding
 import com.example.wasiatd.ui.login.LoginActivity
 import com.example.wasiatd.ui.login.LoginViewModel
+import com.example.wasiatd.utils.CustomToast
+import com.example.wasiatd.utils.ToastType
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -62,10 +64,10 @@ class RegisterActivity : AppCompatActivity() {
         // Observe register response
         registerViewModel.register.observe(this) { registerResponse ->
             if (registerResponse?.flag == "true") {
-                showCustomToast("Register Success, Log in to continue!")
+                showSuccessToast()
                 backToLogin()
             } else {
-                showCustomToast("Register Failed")
+            showErrorToast()
             }
         }
 
@@ -74,7 +76,7 @@ class RegisterActivity : AppCompatActivity() {
             if (errorMessage != null) {
                 val message =
                     if (errorMessage == LoginViewModel.INVALID_CREDENTIALS) R.string.invalidCredential else R.string.systemFailure
-                showCustomToast(message.toString())
+                showErrorToast()
                 registerViewModel.clearErrorMessage()
             }
         }
@@ -86,17 +88,11 @@ class RegisterActivity : AppCompatActivity() {
         finish()
     }
 
-    private fun showCustomToast(message: String) {
-        val inflater = LayoutInflater.from(this)
-        val layout =
-            inflater.inflate(R.layout.custom_toast, findViewById(R.id.custom_toast_container))
+    private fun showSuccessToast() {
+        CustomToast.showCustomToast(this, "Register Success, Log in to continue!", ToastType.SUCCESS)
+    }
 
-        layout.findViewById<TextView>(R.id.toast_text).text = message
-
-        Toast(this).apply {
-            duration = Toast.LENGTH_SHORT
-            view = layout
-            show()
-        }
+    private fun showErrorToast() {
+        CustomToast.showCustomToast(this, "Register Failed", ToastType.ERROR)
     }
 }

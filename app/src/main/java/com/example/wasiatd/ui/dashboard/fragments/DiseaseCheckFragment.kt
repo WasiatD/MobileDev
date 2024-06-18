@@ -26,6 +26,8 @@ import com.example.wasiatd.R
 import com.example.wasiatd.data.remote.PredictRequest
 import com.example.wasiatd.data.remote.config.ApiConfig
 import com.example.wasiatd.ui.diseasedetail.DiseaseDetailActivity
+import com.example.wasiatd.utils.CustomToast
+import com.example.wasiatd.utils.ToastType
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -170,7 +172,7 @@ class DiseaseCheckFragment : Fragment() {
             } catch (e: Exception) {
                 Log.e("API Error", e.message ?: "Unknown error")
                 withContext(Dispatchers.Main) {
-                    showCustomToast("Error, Please try Again")
+                    showErrorToast()
                 }
             }
         }
@@ -188,7 +190,7 @@ class DiseaseCheckFragment : Fragment() {
                 val formatDiseaseName = formatDiseaseName(disease)
                 plantInformation.text = formatDiseaseName
                 withContext(Dispatchers.Main) {
-                    showCustomToast("Success")
+                    showSuccessToast()
                     detailButton.visibility = View.VISIBLE
                     detailButton.setOnClickListener {
                         val intent = Intent(requireContext(), DiseaseDetailActivity::class.java)
@@ -200,7 +202,7 @@ class DiseaseCheckFragment : Fragment() {
             } catch (e: Exception) {
                 Log.e("API Error", e.message ?: "Unknown error")
                 withContext(Dispatchers.Main) {
-                    showCustomToast("Failed to get disease info Please Try Again")
+                    showErrorToast()
                 }
             } finally {
                 withContext(Dispatchers.Main) {
@@ -234,16 +236,11 @@ class DiseaseCheckFragment : Fragment() {
                 }
             }
     }
-    private fun showCustomToast(message: String) {
-        val inflater = LayoutInflater.from(requireContext())
-        val layout = inflater.inflate(R.layout.custom_toast, requireView().findViewById(R.id.custom_toast_container))
+    private fun showSuccessToast() {
+        CustomToast.showCustomToast(requireContext(), "Success", ToastType.SUCCESS)
+    }
 
-        layout.findViewById<TextView>(R.id.toast_text).text = message
-
-        Toast(requireContext()).apply {
-            duration = Toast.LENGTH_SHORT
-            view = layout
-            show()
-        }
+    private fun showErrorToast() {
+        CustomToast.showCustomToast(requireContext(), "Failed To get disease", ToastType.ERROR)
     }
 }
