@@ -39,6 +39,8 @@ class DiseaseCheckFragment : Fragment() {
     private lateinit var detailButton: TextView
     private lateinit var progressBar: ProgressBar
     private lateinit var capturedImageView: ImageView
+    private lateinit var overlayView: View
+
 
     private var currentBitmap: Bitmap? = null
     private var base64Image: String? = null
@@ -52,6 +54,8 @@ class DiseaseCheckFragment : Fragment() {
         detailButton = view.findViewById(R.id.detailLabel)
         progressBar = view.findViewById(R.id.progressBar)
         capturedImageView = view.findViewById(R.id.capturedImageView)
+        overlayView = view.findViewById(R.id.overlayView)
+
 
         val cameraButton: Button = view.findViewById(R.id.button_open_camera)
         val galleryButton: Button = view.findViewById(R.id.button_open_gallery)
@@ -153,6 +157,7 @@ class DiseaseCheckFragment : Fragment() {
                 withContext(Dispatchers.Main) {
                     val plantInfo = response.predictedClass
                     Log.d("Predicted Class", "Plant Info: $plantInfo")
+
                     plantInfo?.let { fetchDiseaseDetails(it) }
 
                     detailButton.setOnClickListener {
@@ -164,6 +169,13 @@ class DiseaseCheckFragment : Fragment() {
                 }
             } catch (e: Exception) {
                 Log.e("API Error", e.message ?: "Unknown error")
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(
+                        requireContext(),
+                        "API Error: ${e.message ?: "Unknown error"}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
         }
     }
@@ -179,8 +191,8 @@ class DiseaseCheckFragment : Fragment() {
 
                 val formatDiseaseName = formatDiseaseName(disease)
                 plantInformation.text = formatDiseaseName
-                showCustomToast("Success")
                 withContext(Dispatchers.Main) {
+                    showCustomToast("Success")
                     detailButton.visibility = View.VISIBLE
                     detailButton.setOnClickListener {
                         val intent = Intent(requireContext(), DiseaseDetailActivity::class.java)
@@ -191,6 +203,9 @@ class DiseaseCheckFragment : Fragment() {
                 }
             } catch (e: Exception) {
                 Log.e("API Error", e.message ?: "Unknown error")
+                withContext(Dispatchers.Main) {
+                    showCustomToast("Failed to get disease info Please Try Again")
+                }
             } finally {
                 withContext(Dispatchers.Main) {
                     showLoading(false)
@@ -200,11 +215,17 @@ class DiseaseCheckFragment : Fragment() {
     }
 
     private fun showLoading(isLoading: Boolean) {
-        progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        if (isLoading) {
+            overlayView.visibility = View.VISIBLE
+            progressBar.visibility = View.VISIBLE
+        } else {
+            overlayView.visibility = View.GONE
+            progressBar.visibility = View.GONE
+        }
     }
 
     private fun formatDiseaseName(disease: String): String {
-        val diseaseTrimmed = disease.replace("_+", " ")
+        val diseaseTrimmed = disease.replace("_+".toRegex(), " ")
         Log.d("diseaseTrim", diseaseTrimmed)
         return diseaseTrimmed
     }
@@ -217,7 +238,6 @@ class DiseaseCheckFragment : Fragment() {
                 }
             }
     }
-
     private fun showCustomToast(message: String) {
         val inflater = LayoutInflater.from(requireContext())
         val layout = inflater.inflate(R.layout.custom_toast, requireView().findViewById(R.id.custom_toast_container))

@@ -163,4 +163,12 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible" />
 
+    <View
+        android:id="@+id/overlayView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"
+        android:visibility="gone"
+        />
+
 </FrameLayout>
