@@ -3,7 +3,9 @@ package com.example.wasiatd.ui.register
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -33,8 +35,9 @@ class RegisterActivity : AppCompatActivity() {
 
         binding.signUpButton.setOnClickListener {
 
-            if(binding.emailField.error == null &&
-                binding.passwordField.error == null) {
+            if (binding.emailField.error == null &&
+                binding.passwordField.error == null
+            ) {
 
                 val email = binding.emailField.text.toString()
                 val password = binding.passwordField.text.toString()
@@ -59,18 +62,19 @@ class RegisterActivity : AppCompatActivity() {
         // Observe register response
         registerViewModel.register.observe(this) { registerResponse ->
             if (registerResponse?.flag == "true") {
-                Toast.makeText(this@RegisterActivity, "Register Success, Log in to continue!", Toast.LENGTH_SHORT).show()
+                showCustomToast("Register Success, Log in to continue!")
                 backToLogin()
             } else {
-                Toast.makeText(this@RegisterActivity, "Register Failed", Toast.LENGTH_SHORT).show()
+                showCustomToast("Register Failed")
             }
         }
 
         // Observe error message
         registerViewModel.errorMessage.observe(this) { errorMessage ->
             if (errorMessage != null) {
-                val message = if (errorMessage == LoginViewModel.INVALID_CREDENTIALS) R.string.invalidCredential else R.string.systemFailure
-                Toast.makeText(this, getString(message), Toast.LENGTH_SHORT).show()
+                val message =
+                    if (errorMessage == LoginViewModel.INVALID_CREDENTIALS) R.string.invalidCredential else R.string.systemFailure
+                showCustomToast(message.toString())
                 registerViewModel.clearErrorMessage()
             }
         }
@@ -80,5 +84,19 @@ class RegisterActivity : AppCompatActivity() {
         val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
         startActivity(intent)
         finish()
+    }
+
+    private fun showCustomToast(message: String) {
+        val inflater = LayoutInflater.from(this)
+        val layout =
+            inflater.inflate(R.layout.custom_toast, findViewById(R.id.custom_toast_container))
+
+        layout.findViewById<TextView>(R.id.toast_text).text = message
+
+        Toast(this).apply {
+            duration = Toast.LENGTH_SHORT
+            view = layout
+            show()
+        }
     }
 }

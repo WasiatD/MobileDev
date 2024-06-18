@@ -153,12 +153,6 @@ class DiseaseCheckFragment : Fragment() {
                 withContext(Dispatchers.Main) {
                     val plantInfo = response.predictedClass
                     Log.d("Predicted Class", "Plant Info: $plantInfo")
-                    Toast.makeText(
-                        requireContext(),
-                        "API Response: $response",
-                        Toast.LENGTH_SHORT
-                    ).show()
-
                     plantInfo?.let { fetchDiseaseDetails(it) }
 
                     detailButton.setOnClickListener {
@@ -170,13 +164,6 @@ class DiseaseCheckFragment : Fragment() {
                 }
             } catch (e: Exception) {
                 Log.e("API Error", e.message ?: "Unknown error")
-                withContext(Dispatchers.Main) {
-                    Toast.makeText(
-                        requireContext(),
-                        "API Error: ${e.message ?: "Unknown error"}",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
             }
         }
     }
@@ -192,6 +179,7 @@ class DiseaseCheckFragment : Fragment() {
 
                 val formatDiseaseName = formatDiseaseName(disease)
                 plantInformation.text = formatDiseaseName
+                showCustomToast("Success")
                 withContext(Dispatchers.Main) {
                     detailButton.visibility = View.VISIBLE
                     detailButton.setOnClickListener {
@@ -203,13 +191,6 @@ class DiseaseCheckFragment : Fragment() {
                 }
             } catch (e: Exception) {
                 Log.e("API Error", e.message ?: "Unknown error")
-                withContext(Dispatchers.Main) {
-                    Toast.makeText(
-                        requireContext(),
-                        "API Error: ${e.message ?: "Unknown error"}",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
             } finally {
                 withContext(Dispatchers.Main) {
                     showLoading(false)
@@ -223,7 +204,7 @@ class DiseaseCheckFragment : Fragment() {
     }
 
     private fun formatDiseaseName(disease: String): String {
-        val diseaseTrimmed = disease.replace("_+".toRegex(), " ")
+        val diseaseTrimmed = disease.replace("_+", " ")
         Log.d("diseaseTrim", diseaseTrimmed)
         return diseaseTrimmed
     }
@@ -235,5 +216,18 @@ class DiseaseCheckFragment : Fragment() {
                 arguments = Bundle().apply {
                 }
             }
+    }
+
+    private fun showCustomToast(message: String) {
+        val inflater = LayoutInflater.from(requireContext())
+        val layout = inflater.inflate(R.layout.custom_toast, requireView().findViewById(R.id.custom_toast_container))
+
+        layout.findViewById<TextView>(R.id.toast_text).text = message
+
+        Toast(requireContext()).apply {
+            duration = Toast.LENGTH_SHORT
+            view = layout
+            show()
+        }
     }
 }

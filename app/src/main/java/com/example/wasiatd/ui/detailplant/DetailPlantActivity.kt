@@ -3,6 +3,7 @@ package com.example.wasiatd.ui.detailplant
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -15,6 +16,7 @@ import com.example.wasiatd.data.remote.config.ApiConfig
 import com.example.wasiatd.data.remote.config.ApiServices
 import com.example.wasiatd.data.remote.responses.GetDetailIotResponse
 import com.example.wasiatd.data.remote.responses.UpdatePlantResponse
+import com.example.wasiatd.databinding.CustomToastBinding
 import com.example.wasiatd.ui.login.LoginActivity
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody
@@ -117,7 +119,7 @@ class DetailPlantActivity : AppCompatActivity() {
         val location = plantLocationEditText.text.toString().trim()
 
         if (name.isEmpty() || description.isEmpty() || location.isEmpty()) {
-            Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
+            showCustomToast("Please fill all fields")
             return
         }
 
@@ -133,18 +135,27 @@ class DetailPlantActivity : AppCompatActivity() {
         call.enqueue(object : Callback<UpdatePlantResponse> {
             override fun onResponse(call: Call<UpdatePlantResponse>, response: Response<UpdatePlantResponse>) {
                 if (response.isSuccessful) {
-                    Toast.makeText(this@DetailPlantActivity, response.body()?.message ?: "Plant data updated successfully", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this@DetailPlantActivity, DashboardMainActivity::class.java)
                     startActivity(intent)
                     finish()
                 } else {
-                    Toast.makeText(this@DetailPlantActivity, "Failed to update plant data", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<UpdatePlantResponse>, t: Throwable) {
-                Toast.makeText(this@DetailPlantActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    private fun showCustomToast(message: String) {
+        val inflater = LayoutInflater.from(this)
+        val binding = CustomToastBinding.inflate(inflater)
+        binding.toastText.text = message
+
+        Toast(this).apply {
+            duration = Toast.LENGTH_SHORT
+            view = binding.root
+            show()
+        }
     }
 }
