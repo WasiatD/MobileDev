@@ -1,18 +1,18 @@
-package com.example.wasiatd.fragments
+package com.example.wasiatd.ui.dashboard.fragments
 
-import DashboardAdapter
-import PlantAdapter
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.wasiatd.R
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.wasiatd.data.local.ItemDataDashboard
-import com.example.wasiatd.data.local.Plant
+import DashboardAdapter
+import android.util.Log
+import android.widget.ProgressBar
+import android.widget.TextView
 import com.example.wasiatd.data.remote.config.ApiConfig
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -22,11 +22,12 @@ import kotlinx.coroutines.withContext
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class PlantFragment : Fragment() {
+class HomeFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
-
+    private lateinit var progressBar: ProgressBar
     private lateinit var recyclerView: RecyclerView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,12 +36,13 @@ class PlantFragment : Fragment() {
             param2 = it.getString(ARG_PARAM2)
         }
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_plant, container, false)
+        val view = inflater.inflate(R.layout.fragment_home, container, false)
+
+        progressBar = view.findViewById(R.id.progressBar)
         recyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(context)
 
@@ -50,8 +52,10 @@ class PlantFragment : Fragment() {
         GlobalScope.launch(Dispatchers.IO) {
             try {
                 withContext(Dispatchers.Main) {
+                    progressBar.visibility = View.VISIBLE
                     recyclerView.visibility = View.GONE
                 }
+
                 val response = apiService.getIot()
                 val dataFromApi = response.isi
                 withContext(Dispatchers.Main) {
@@ -59,15 +63,18 @@ class PlantFragment : Fragment() {
                         for (isiItem in isiItems) {
                             val id = isiItem?.id
                             val nama = isiItem?.nama
-                            val lokasi = isiItem?.lokasi ?: "Please fill this field"
-                            val deskripsi = isiItem?.deskripsi ?: "Please fill this field"
+                            val lokasi = isiItem?.lokasi
+                            val deskripsi = isiItem?.deskripsi
 
-                            val itemDataDashboard = ItemDataDashboard(id ?: "", nama ?: "", deskripsi, lokasi)
+                            val itemDataDashboard = ItemDataDashboard("$id", "$nama", "$deskripsi", "$lokasi")
 
                             itemDataDashboardList.add(itemDataDashboard)
                         }
-                        val adapter = PlantAdapter(itemDataDashboardList)
+
+                        val adapter = DashboardAdapter(itemDataDashboardList)
                         recyclerView.adapter = adapter
+
+                        progressBar.visibility = View.GONE
                         recyclerView.visibility = View.VISIBLE
                     }
                 }
@@ -75,16 +82,19 @@ class PlantFragment : Fragment() {
                 // Handle API error
                 Log.e("API Error", e.message ?: "Unknown error")
                 withContext(Dispatchers.Main) {
+                    progressBar.visibility = View.GONE
                     recyclerView.visibility = View.VISIBLE
                 }
             }
         }
+
         return view
     }
+
     companion object {
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            PlantFragment().apply {
+            HomeFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

@@ -56,7 +56,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".dashboard.dashboardMainActivity.dashboardMainActivity"
+            android:name=".ui.dashboard.dashboardMainActivity.dashboardMainActivity"
             android:exported="false" />
         <activity
             android:name=".ui.main.MainActivity"

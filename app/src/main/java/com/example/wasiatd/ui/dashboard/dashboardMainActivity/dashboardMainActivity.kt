@@ -1,4 +1,4 @@
-package com.example.wasiatd.dashboard.dashboardMainActivity
+package com.example.wasiatd.ui.dashboard.dashboardMainActivity
 
 import android.content.Intent
 import android.content.SharedPreferences
@@ -10,11 +10,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.example.wasiatd.R
 import com.example.wasiatd.data.remote.config.ApiConfig
-import com.example.wasiatd.fragments.DiseaseCheckFragment
-import com.example.wasiatd.fragments.HomeFragment
-import com.example.wasiatd.fragments.PlantFragment
-import com.example.wasiatd.fragments.TasksFragment
-import com.example.wasiatd.fragments.SearchFragment
+import com.example.wasiatd.ui.dashboard.fragments.DiseaseCheckFragment
+import com.example.wasiatd.ui.dashboard.fragments.HomeFragment
+import com.example.wasiatd.ui.dashboard.fragments.PlantFragment
+import com.example.wasiatd.ui.dashboard.fragments.TasksFragment
+import com.example.wasiatd.ui.dashboard.fragments.SearchFragment
 import com.example.wasiatd.ui.diseasecheck.DiseaseCheckActivity
 import com.example.wasiatd.ui.login.LoginActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -78,14 +78,15 @@ class dashboardMainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.navigation_search -> {
-//                    Log.d("Search", "Yaallah Tolong Aku Plis")
-//                    val diseaseCheckFragment = DiseaseCheckFragment.newInstance("param1", "param2")
-//                    supportFragmentManager.commit {
-//                        replace(R.id.fragment_container, diseaseCheckFragment)
-//                        addToBackStack(null) // Optional: Add transaction to back stack
-//                    }
-                    val intent = Intent(this, DiseaseCheckActivity::class.java)
-                    startActivity(intent)
+                    Log.d("Search", "Yaallah Tolong Aku Plis")
+                    val diseaseCheckFragment = DiseaseCheckFragment.newInstance("param1", "param2")
+                    supportFragmentManager.commit {
+                        replace(R.id.fragment_container, diseaseCheckFragment)
+                        addToBackStack(null) // Optional: Add transaction to back stack
+
+                    }
+//                    val intent = Intent(this, DiseaseCheckActivity::class.java)
+//                    startActivity(intent)
                     true
                 }
                 else -> false

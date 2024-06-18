@@ -1,4 +1,4 @@
-package com.example.wasiatd.fragments
+package com.example.wasiatd.ui.dashboard.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

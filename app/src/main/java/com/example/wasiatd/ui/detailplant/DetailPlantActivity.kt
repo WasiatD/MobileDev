@@ -9,7 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.wasiatd.R
-import com.example.wasiatd.dashboard.dashboardMainActivity.dashboardMainActivity
+import com.example.wasiatd.ui.dashboard.dashboardMainActivity.dashboardMainActivity
 import com.example.wasiatd.data.local.ItemDetailPlant
 import com.example.wasiatd.data.remote.config.ApiConfig
 import com.example.wasiatd.data.remote.config.ApiServices

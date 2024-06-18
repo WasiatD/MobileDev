@@ -4,7 +4,7 @@
     android:id="@+id/dashboard"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".dashboard.dashboardMainActivity.dashboardMainActivity">
+    tools:context=".ui.dashboard.dashboardMainActivity.dashboardMainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
