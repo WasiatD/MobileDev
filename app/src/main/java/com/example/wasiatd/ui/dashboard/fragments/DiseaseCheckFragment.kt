@@ -186,7 +186,7 @@ class DiseaseCheckFragment : Fragment() {
                 val response = apiService.getDiseaseInfo(disease)
 
                 Log.d("Disease Info Response", response.toString())
-
+//                showSuccessToast()
                 val formatDiseaseName = formatDiseaseName(disease)
                 plantInformation.text = formatDiseaseName
                 withContext(Dispatchers.Main) {

@@ -32,6 +32,7 @@ class DetailPlantActivity : AppCompatActivity() {
     private lateinit var suhuTextView: TextView
     private lateinit var kelembapanTextView: TextView
     private lateinit var cahayaTextView: TextView
+    private lateinit var reminderTextView: TextView
 
     private lateinit var plantNameEditText: EditText
     private lateinit var plantDescriptionEditText: EditText
@@ -60,6 +61,8 @@ class DetailPlantActivity : AppCompatActivity() {
         plantNameEditText = findViewById(R.id.plant_name)
         plantLocationEditText = findViewById(R.id.plant_location)
         plantDescriptionEditText = findViewById(R.id.plant_description)
+        reminderTextView = findViewById(R.id.reminderText)
+
 
         plantNameEditText.setText(plantName)
         plantLocationEditText.setText(plantLocation)
@@ -95,10 +98,13 @@ class DetailPlantActivity : AppCompatActivity() {
                         itemDetailPlantList.add(ItemDetailPlant(it.relay, it.suhu, it.kelembapan, it.cahaya))
                         Log.d("DetailPlantActivity", "Added item: Relay=${it.relay}, Suhu=${it.suhu}, Kelembapan=${it.kelembapan}. Cahaya=${it.cahaya}")
 
+                        val condition = checkCondition(it.kelembapan, it.suhu, it.cahaya)
+
                         relayTextView.text = it.relay
                         suhuTextView.text = it.suhu
                         kelembapanTextView.text = it.kelembapan
                         cahayaTextView.text = it.cahaya
+                        reminderTextView.text = condition
                     }
                 } else {
                     Log.e("DetailPlantActivity", "Response not successful: ${response.errorBody()?.string()}")
@@ -156,4 +162,52 @@ class DetailPlantActivity : AppCompatActivity() {
             show()
         }
     }
+
+    private fun checkCondition(kelembabanText: String, suhuText: String, cahayaText: String): String {
+        val kelembaban: Float? = kelembabanText.toFloatOrNull()
+        val suhu: Float? = suhuText.toFloatOrNull()
+        val cahaya: Float? = cahayaText.toFloatOrNull()
+
+        val kelembabanCondition: String = when {
+            kelembaban == null -> "Invalid humidity"
+            kelembaban < 30 -> "Bad humidity"
+            kelembaban in 30.0..60.0 -> "Moderate humidity"
+            kelembaban > 60 -> "Good humidity"
+            else -> "Invalid humidity"
+        }
+
+        val suhuCondition: String = when {
+            suhu == null -> "Invalid temperature"
+            suhu < 15 -> "Bad temperature"
+            suhu in 15.0..25.0 -> "Good temperature"
+            suhu > 25 -> "Moderate temperature"
+            else -> "Invalid temperature"
+        }
+
+        val cahayaCondition: String = when {
+            cahaya == null -> "Invalid light"
+            cahaya < 30 -> "Bad light"
+            cahaya in 31.0..70.0 -> "Moderate light"
+            cahaya > 70.0 -> "Good light"
+            else -> "Invalid light"
+        }
+
+        val overallCondition: String = when {
+            kelembabanCondition.contains("Invalid") || suhuCondition.contains("Invalid") || cahayaCondition.contains("Invalid") -> {
+                "Invalid input provided for one or more parameters."
+            }
+            kelembabanCondition.contains("Bad") || suhuCondition.contains("Bad") || cahayaCondition.contains("Bad") -> {
+                "The plant condition is not good. Please check humidity, temperature, and light levels."
+            }
+            kelembabanCondition.contains("Moderate") || suhuCondition.contains("Moderate") || cahayaCondition.contains("Moderate") -> {
+                "The plant condition is moderate. Consider improving the environment."
+            }
+            else -> {
+                "The plant condition is good."
+            }
+        }
+
+        return overallCondition
+    }
+
 }

@@ -74,6 +74,8 @@ class HomeFragment : Fragment() {
 
                             itemDataDashboardList.add(itemDataDashboard)
                         }
+                        val responseTask = apiService.getNotes()
+                        val dataFromApiTask = responseTask.notes
 
                         val adapter = DashboardAdapter(itemDataDashboardList)
                         recyclerView.adapter = adapter
@@ -81,6 +83,7 @@ class HomeFragment : Fragment() {
                         progressBar.visibility = View.GONE
                         recyclerView.visibility = View.VISIBLE
                         plantCount.text = itemDataDashboardList.size.toString()
+                        tasksCount.text = dataFromApiTask.size.toString()
                     }
                 }
             } catch (e: Exception) {

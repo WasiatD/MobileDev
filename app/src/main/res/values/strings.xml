@@ -38,7 +38,7 @@
     <string name="plantLatinName">Solanum lycopersicum</string>
 
     <string name="plantDiseaseLabel">Plant Disease</string>
-    <string name="plantDiseaseInformation">Tomato Leaf Curl Virus</string>
+    <string name="plantDiseaseInformation">Please Scan your Leaf Plan</string>
     <string name="updateImageLabel">Update Image</string>
     <string name="analyzeLabel">Analyze Plant Disease</string>
     <string name="plantedDate">20/02/2024</string>
@@ -99,4 +99,5 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
     <string name="searchLabel">Want to search something?</string>
+    <string name="plant_description_here">Plant Description Here</string>
 </resources>
